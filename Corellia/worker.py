@@ -43,4 +43,10 @@ class Client(object):
 			self.port.write(dumps((func, args)))
 			return loads(self.port.read())
 		return call
- 
+
+def call(addr, func, args):
+	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	sock.connect(addr)
+	port = Port(sock)
+	port.write(dumps((func, args)))
+	return loads(port.read())
