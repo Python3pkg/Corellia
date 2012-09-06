@@ -8,33 +8,35 @@ class Broker(object):
 	def __init__(self, client_port, worker_port):
 		self.client_port = client_port
 		self.worker_port = worker_port
-		self.tdp = Queue()
+		self.tdq = Queue()
 
 	def waiter(self, s0):
 		while True:
 			p0 = Port(s0)
 			req = p0.read()
-			if not buf: 
+			if not req: 
 				break
 			p1 = self.tdq.get()
-			while not p1.write(buf):
+			while not p1.write(req):
 				p1 = self.tdq.get()
-			req = p1.read()
-			if req:
+			rep = p1.read()
+			if rep:
 				self.tdq.put(p1)
-				if not p0.write(req):
+				if not p0.write(rep):
 					break
 
 	def listen_client(self):
 		client_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		client_sock.bind(("", client_port))
+		client_sock.bind(("", self.client_port))
+		client_sock.listen(10000)
 		while True:
 			sock, _ = client_sock.accept()
-			gevent.spawn(waiter, sock)
+			gevent.spawn(self.waiter, sock)
 
 	def listen_worker(self):
 		worker_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		worker_sock.bind(("", worker_port))
+		worker_sock.bind(("", self.worker_port))
+		worker_sock.listen(10000)
 		while True:
 			sock, _ = worker_sock.accept()
 			self.tdq.put(Port(sock)) 
