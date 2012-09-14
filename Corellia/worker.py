@@ -15,6 +15,7 @@ class Worker(object):
 		
 	def run(self, broker_addr):
 		listen_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		listen_sock.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
 		listen_sock.connect(broker_addr)
 		self.port = Port(listen_sock)
 		while True:
@@ -32,6 +33,7 @@ class Worker(object):
 class Client(object):
 	def __init__(self, worker_addr):
 		sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		sock.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
 		sock.connect(worker_addr)
 		self.port = Port(sock)
 

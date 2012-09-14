@@ -27,6 +27,7 @@ class Broker(object):
 
 	def listen_client(self):
 		client_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		client_sock.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
 		client_sock.bind(("", self.client_port))
 		client_sock.listen(10000)
 		while True:
@@ -35,6 +36,7 @@ class Broker(object):
 
 	def listen_worker(self):
 		worker_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		worker_sock.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
 		worker_sock.bind(("", self.worker_port))
 		worker_sock.listen(10000)
 		while True:
