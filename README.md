@@ -1,7 +1,7 @@
 Corellia
 ========
 
-> "The bigger the galaxy, the sweeter the homecoming." ―Corellian proverb
+> "The bigger the galaxy, the sweeter the homecoming."  ―Corellian proverb
 
 ## About
 
@@ -55,4 +55,4 @@ And to call the server remotely:
     
 ## Detailed Design
 
-***TODO***
+**TODO**
