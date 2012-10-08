@@ -17,10 +17,10 @@ class Worker(object):
 	def run_alone(self, port):
 		listen_sock = gevent.socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		listen_sock.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
-		client_sock.bind(("", port))
-		client_sock.listen(10000)
+		listen_sock.bind(("", port))
+		listen_sock.listen(10000)
 		while True:
-			sock, _ = client_sock.accept()
+			sock, _ = listen_sock.accept()
 			gevent.spawn(self.handle_let, sock)
 
 	def handle_let(self, sock):
@@ -31,7 +31,6 @@ class Worker(object):
 				port.write(self.handle(message))
 			else:
 				break
-
 		
 	def run(self, broker_addr):
 		listen_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
