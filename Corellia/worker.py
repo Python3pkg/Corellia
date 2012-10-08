@@ -2,6 +2,7 @@ from port import Port
 import socket
 import czjson as serlib
 import snappy
+import gevent
 
 def dumps(data):
     return snappy.compress(serlib.dumps(data))
@@ -12,6 +13,25 @@ def loads(data):
 class Worker(object):
 	def __init__(self, C, *args):
 		self.instance = C(*args)
+
+	def run_alone(self, port):
+		listen_sock = gevent.socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		listen_sock.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
+		client_sock.bind(("", port))
+		client_sock.listen(10000)
+		while True:
+			sock, _ = client_sock.accept()
+			gevent.spawn(self.handle_let, sock)
+
+	def handle_let(self, sock):
+		port = Port(sock)
+		while True:
+			message = port.read()
+			if message:
+				port.write(self.handle(message))
+			else:
+				break
+
 		
 	def run(self, broker_addr):
 		listen_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
