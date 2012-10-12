@@ -1,6 +1,6 @@
 from port import Port
 import socket
-import czjson as serlib
+import pickle as serlib
 import snappy
 import gevent
 
