@@ -1,6 +1,6 @@
 from port import Port
 import socket
-import pickle as serlib
+import Husky as serlib
 import snappy
 import gevent
 
