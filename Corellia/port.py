@@ -1,4 +1,7 @@
 import struct
+from gevent.socket import SHUT_RDWR
+import Husky
+import snappy
 
 def safe_recv(sock, len):
     try:
@@ -42,4 +45,18 @@ class Port(object):
         return safe_send(self._sock, msg)
 
     def close(self):
+        self._sock.shutdown(SHUT_RDWR)
         self._sock.close()
+
+dumps = lambda x: snappy.compress(Husky.dumps(x))
+loads = lambda x: Husky.loads(snappy.decompress(x))
+
+class ObjPort(Port):
+    def read(self):
+        res = super(ObjPort, self).read()
+        if res:
+            res = loads(res)
+        return res
+        
+    def write(self, bytes):
+        return super(ObjPort, self).write(dumps(bytes))
