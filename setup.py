@@ -3,10 +3,10 @@
 from setuptools import setup
 
 
-requires = ["gevent>=0.13.8", "python-snappy>=0.4", "Husky>=0.1.0"]
+requires = ["gevent>=0.13.8", "python-snappy>=0.4", "Husky>=0.1.0", "redis>=2.7.1"]
 
 setup(name='Corellia',
-      version='0.1.0',
+      version='0.2.0',
       description='Helper classes to write distributed applications',
       author='Zhu Zhaomeng',
       author_email='zhaomeng.zhu@gmail.com',

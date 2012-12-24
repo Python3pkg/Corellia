@@ -3,11 +3,11 @@ from gevent import socket as socket
 import snappy
 import gevent
 
-class Worker(object):
+class SockServer(object):
 	def __init__(self, C, *args):
 		self.instance = C(*args)
 
-	def run_alone(self, port):
+	def run(self, port):
 		listen_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		listen_sock.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
 		listen_sock.bind(("", port))
@@ -24,25 +24,13 @@ class Worker(object):
 				port.write(self.handle(message))
 			else:
 				break
-		
-	def run(self, broker_addr):
-		listen_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		listen_sock.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
-		listen_sock.connect(broker_addr)
-		self.port = ObjPort(listen_sock)
-		while True:
-			message = self.port.read()
-			if message:
-				self.port.write(self.handle(message))
-			else:
-				break
 
 	def handle(self, message):
 		func, args = message
 		f = getattr(self.instance, func, lambda _: None)
 		return f(*args)
 
-class Client(object):
+class SockClient(object):
 	def __init__(self, worker_addr):
 		sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		sock.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
