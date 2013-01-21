@@ -29,3 +29,5 @@ pip-log.txt
 test/.DS_Store
 
 .DS_Store
+
+test/prof.txt
