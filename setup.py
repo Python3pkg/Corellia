@@ -13,7 +13,7 @@ ext_modules=[
 
 setup(
     name='Corellia',
-    version='0.4.0',
+    version='0.4.1',
     description='Fast Task Queue Using Redis',
     author='Zhu Zhaomeng',
     author_email='zhaomeng.zhu@gmail.com',
