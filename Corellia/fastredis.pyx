@@ -1,6 +1,7 @@
 import redis
-import gevent
-from gevent.coros import Semaphore
+import thread
+from threading import Semaphore
+import time
 
 
 cdef class Reply(object):
@@ -19,7 +20,7 @@ cdef class Reply(object):
 
     def reply(self):
         while not self.set:
-            gevent.sleep(self.interval)
+            time.sleep(self.interval)
         return self.value
 
 cdef class FastRedis(object):
@@ -41,10 +42,10 @@ cdef class FastRedis(object):
             host = addr
             port = 6379
         self.redis = redis.StrictRedis(host=host, port=port)
-        self.pipeline = self.redis.pipeline()
-        self.interval = kargs.get("interval", 0.01)
+        self.pipeline = self.redis.pipeline(transaction=False)
+        self.interval = kargs.get("interval", 0.1)
         self.lock = Semaphore()
-        self.let= gevent.spawn(self.execute)
+        self.let= thread.start_new_thread(self.execute, ())
         self.empty = True
         self.replies = []
 
@@ -63,11 +64,13 @@ cdef class FastRedis(object):
     cpdef execute(FastRedis self):
         while 1:
             self.submit()
-            gevent.sleep(self.interval)
+            time.sleep(self.interval)
 
     cpdef submit(FastRedis self):
+        cdef list replies
         self.lock.acquire()
         if not self.empty:
+            print "pipeline...", len(self.replies)
             replies = self.pipeline.execute()
             for i in xrange(len(replies)):
                 self.replies[i].set_value(replies[i])

@@ -7,11 +7,10 @@ cdef class Client(object):
     cdef str path
 
     def __cinit__(self, char* addr, char* path, **kargs):
-        self.tq = TaskQueue(addr, **kargs)
-        self.path = "%s.running" % path
+        self.tq = TaskQueue(addr, path, **kargs)
 
     cpdef str put_task(self, char* method, tuple args, key=None):
-        return self.tq.PUT_TASK(self.path, method, args, key)
+        return self.tq.PUT_TASK(method, args, key)
 
     cpdef object get_result(self, char* key):
         return self.tq.GET_RESULT(key)
