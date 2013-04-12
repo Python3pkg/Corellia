@@ -80,18 +80,20 @@ cdef class TaskQueue(object):
     cpdef PUT_RESULT(self, char* key, object result):
         result = self.result_dumps(result)
         if self.serialize:
-            self.redis.cmd("set", (key, result))
+            self.redis.cmd("lpush", (key, result))
             self.redis.cmd("expire", (key, self.timeout["result"]))
         else:
-            self.redis.raw_cmd("set", (key, result))
+            self.redis.raw_cmd("lpush", (key, result))
             self.redis.raw_cmd("expire", (key, self.timeout["result"]))
 
-    cpdef object GET_RESULT(self, char* key):
+    cpdef object GET_RESULT(self, char* key, block):
         cdef result
-        if self.serialize:
-            result = self.redis.cmd("get", (key,)).reply()
+        if block:
+            result = self.redis.raw_cmd("blpop", (key, 0))[1]
+        elif self.serialize:
+            result = self.redis.cmd("lpop", (key,)).reply()
         else:
-            result = self.redis.raw_cmd("get", (key,))
+            result = self.redis.raw_cmd("lpop", (key,))
         if not result:
             raise ResultNotReadyOrExpired
         result = self.result_loads(result)

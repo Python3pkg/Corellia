@@ -70,7 +70,7 @@ cdef class FastRedis(object):
         cdef list replies
         self.lock.acquire()
         if not self.empty:
-            print "pipeline...", len(self.replies)
+            # print "pipeline...", len(self.replies)
             replies = self.pipeline.execute()
             for i in xrange(len(replies)):
                 self.replies[i].set_value(replies[i])

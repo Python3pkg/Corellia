@@ -13,6 +13,7 @@ class KVStore(object):
 
     def get(self, key, serialize=False):
         if serialize:
-            self.redis.cmd("hget", (self.name, key)).reply()
+            res = self.redis.cmd("hget", (self.name, key)).reply()
         else:
-            self.redis.raw_cmd("hget", (self.name, key))
+            res = self.redis.raw_cmd("hget", (self.name, key))
+        return res

@@ -12,19 +12,13 @@ cdef class Client(object):
     cpdef str put_task(self, char* method, tuple args, key=None):
         return self.tq.PUT_TASK(method, args, key)
 
-    cpdef object get_result(self, char* key):
-        return self.tq.GET_RESULT(key)
+    cpdef object get_result(self, char* key, block=True):
+        return self.tq.GET_RESULT(key, block)
 
     cpdef finish(self):
         self.tq.flush()
 
     def __getattr__(self, char* method):
-        def f(*args):
-            key = self.put_task(method, args)
-            while True:
-                try:
-                    result = self.get_result(key)
-                    return result
-                except ResultNotReadyOrExpired:
-                    time.sleep(0.001)
-        return f
+        return lambda *args: \
+            self.get_result(self.put_task(method, args), \
+                            block=True)

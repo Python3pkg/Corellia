@@ -28,10 +28,10 @@ cdef class WorkerPool(object):
             key, method, args = task
             func = getattr(ins, method, None)
             if func:
-                try:
-                    result = func(*args)
-                except Exception, e:
-                    result = str(e)
+                # try:
+                result = func(*args)
+                # except Exception, e:
+                #   result = str(e)
             else:
                 result = "No Such Method!"
             self.tq.PUT_RESULT(key, result)

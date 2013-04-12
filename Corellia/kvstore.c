@@ -249,8 +249,8 @@
 #define _USE_MATH_DEFINES
 #endif
 #include <math.h>
-#define __PYX_HAVE__Corellia__client
-#define __PYX_HAVE_API__Corellia__client
+#define __PYX_HAVE__Corellia__kvstore
+#define __PYX_HAVE_API__Corellia__kvstore
 #ifdef _OPENMP
 #include <omp.h>
 #endif /* _OPENMP */
@@ -337,75 +337,20 @@ static const char *__pyx_filename;
 
 
 static const char *__pyx_f[] = {
-  "client.pyx",
+  "kvstore.pyx",
 };
 
 /*--- Type declarations ---*/
-struct __pyx_obj_8Corellia_6client___pyx_scope_struct____getattr__;
-struct __pyx_obj_8Corellia_6client_Client;
-struct __pyx_opt_args_8Corellia_6client_6Client_put_task;
-struct __pyx_opt_args_8Corellia_6client_6Client_get_result;
-
-/* "Corellia/client.pyx":12
- *         self.tq = TaskQueue(addr, path, **kargs)
- * 
- *     cpdef str put_task(self, char* method, tuple args, key=None):             # <<<<<<<<<<<<<<
- *         return self.tq.PUT_TASK(method, args, key)
- * 
- */
-struct __pyx_opt_args_8Corellia_6client_6Client_put_task {
-  int __pyx_n;
-  PyObject *key;
+struct __pyx_defaults;
+typedef struct __pyx_defaults __pyx_defaults;
+struct __pyx_defaults1;
+typedef struct __pyx_defaults1 __pyx_defaults1;
+struct __pyx_defaults {
+  PyObject *__pyx_arg_serialize;
 };
-
-/* "Corellia/client.pyx":15
- *         return self.tq.PUT_TASK(method, args, key)
- * 
- *     cpdef object get_result(self, char* key, block=True):             # <<<<<<<<<<<<<<
- *         return self.tq.GET_RESULT(key, block)
- * 
- */
-struct __pyx_opt_args_8Corellia_6client_6Client_get_result {
-  int __pyx_n;
-  PyObject *block;
+struct __pyx_defaults1 {
+  PyObject *__pyx_arg_serialize;
 };
-
-/* "Corellia/client.pyx":21
- *         self.tq.flush()
- * 
- *     def __getattr__(self, char* method):             # <<<<<<<<<<<<<<
- *         return lambda *args: \
- *             self.get_result(self.put_task(method, args), \
- */
-struct __pyx_obj_8Corellia_6client___pyx_scope_struct____getattr__ {
-  PyObject_HEAD
-  char *__pyx_v_method;
-  struct __pyx_obj_8Corellia_6client_Client *__pyx_v_self;
-};
-
-
-/* "Corellia/client.pyx":4
- * import time
- * 
- * cdef class Client(object):             # <<<<<<<<<<<<<<
- * 
- *     cdef tq
- */
-struct __pyx_obj_8Corellia_6client_Client {
-  PyObject_HEAD
-  struct __pyx_vtabstruct_8Corellia_6client_Client *__pyx_vtab;
-  PyObject *tq;
-  PyObject *path;
-};
-
-
-
-struct __pyx_vtabstruct_8Corellia_6client_Client {
-  PyObject *(*put_task)(struct __pyx_obj_8Corellia_6client_Client *, char *, PyObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_8Corellia_6client_6Client_put_task *__pyx_optional_args);
-  PyObject *(*get_result)(struct __pyx_obj_8Corellia_6client_Client *, char *, int __pyx_skip_dispatch, struct __pyx_opt_args_8Corellia_6client_6Client_get_result *__pyx_optional_args);
-  PyObject *(*finish)(struct __pyx_obj_8Corellia_6client_Client *, int __pyx_skip_dispatch);
-};
-static struct __pyx_vtabstruct_8Corellia_6client_Client *__pyx_vtabptr_8Corellia_6client_Client;
 #ifndef CYTHON_REFNANNY
   #define CYTHON_REFNANNY 0
 #endif
@@ -460,6 +405,8 @@ static struct __pyx_vtabstruct_8Corellia_6client_Client *__pyx_vtabptr_8Corellia
 #define __Pyx_CLEAR(r)    do { PyObject* tmp = ((PyObject*)(r)); r = NULL; __Pyx_DECREF(tmp);} while(0)
 #define __Pyx_XCLEAR(r)   do { if((r) != NULL) {PyObject* tmp = ((PyObject*)(r)); r = NULL; __Pyx_DECREF(tmp);}} while(0)
 
+static PyObject *__Pyx_GetName(PyObject *dict, PyObject *name); /*proto*/
+
 static void __Pyx_RaiseArgtupleInvalid(const char* func_name, int exact,
     Py_ssize_t num_min, Py_ssize_t num_max, Py_ssize_t num_found); /*proto*/
 
@@ -469,18 +416,14 @@ static int __Pyx_ParseOptionalKeywords(PyObject *kwds, PyObject **argnames[], \
     PyObject *kwds2, PyObject *values[], Py_ssize_t num_pos_args, \
     const char* function_name); /*proto*/
 
-static PyObject *__Pyx_GetName(PyObject *dict, PyObject *name); /*proto*/
-
-static int __Pyx_ArgTypeTest(PyObject *obj, PyTypeObject *type, int none_allowed,
-    const char *name, int exact); /*proto*/
-
-static CYTHON_INLINE int __Pyx_CheckKeywordStrings(PyObject *kwdict, const char* function_name, int kw_allowed); /*proto*/
-
-static CYTHON_INLINE void __Pyx_RaiseClosureNameError(const char *varname);
-
 static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, long level); /*proto*/
 
 static CYTHON_INLINE void __Pyx_RaiseImportError(PyObject *name);
+
+static PyObject *__Pyx_FindPy2Metaclass(PyObject *bases); /*proto*/
+
+static PyObject *__Pyx_CreateClass(PyObject *bases, PyObject *dict, PyObject *name,
+                                   PyObject *modname); /*proto*/
 
 #define __Pyx_CyFunction_USED 1
 #include <structmember.h>
@@ -558,8 +501,6 @@ static CYTHON_INLINE signed PY_LONG_LONG __Pyx_PyInt_AsSignedLongLong(PyObject *
 
 static int __Pyx_check_binary_version(void);
 
-static int __Pyx_SetVtable(PyObject *dict, void *vtable); /*proto*/
-
 typedef struct {
     int code_line;
     PyCodeObject* code_object;
@@ -580,313 +521,92 @@ static void __Pyx_AddTraceback(const char *funcname, int c_line,
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t); /*proto*/
 
 
-/* Module declarations from 'Corellia.client' */
-static PyTypeObject *__pyx_ptype_8Corellia_6client_Client = 0;
-static PyTypeObject *__pyx_ptype_8Corellia_6client___pyx_scope_struct____getattr__ = 0;
-#define __Pyx_MODULE_NAME "Corellia.client"
-int __pyx_module_is_main_Corellia__client = 0;
+/* Module declarations from 'Corellia.kvstore' */
+#define __Pyx_MODULE_NAME "Corellia.kvstore"
+int __pyx_module_is_main_Corellia__kvstore = 0;
 
-/* Implementation of 'Corellia.client' */
-static int __pyx_pf_8Corellia_6client_6Client___cinit__(struct __pyx_obj_8Corellia_6client_Client *__pyx_v_self, char *__pyx_v_addr, char *__pyx_v_path, PyObject *__pyx_v_kargs); /* proto */
-static PyObject *__pyx_pf_8Corellia_6client_6Client_2put_task(struct __pyx_obj_8Corellia_6client_Client *__pyx_v_self, char *__pyx_v_method, PyObject *__pyx_v_args, PyObject *__pyx_v_key); /* proto */
-static PyObject *__pyx_pf_8Corellia_6client_6Client_4get_result(struct __pyx_obj_8Corellia_6client_Client *__pyx_v_self, char *__pyx_v_key, PyObject *__pyx_v_block); /* proto */
-static PyObject *__pyx_pf_8Corellia_6client_6Client_6finish(struct __pyx_obj_8Corellia_6client_Client *__pyx_v_self); /* proto */
-static PyObject *__pyx_lambda_funcdef_lambda1(PyObject *__pyx_self, PyObject *__pyx_v_args); /* proto */
-static PyObject *__pyx_pf_8Corellia_6client_6Client_8__getattr__(struct __pyx_obj_8Corellia_6client_Client *__pyx_v_self, char *__pyx_v_method); /* proto */
-static char __pyx_k_2[] = "Corellia.client";
-static char __pyx_k_3[] = "ResultNotReadyOrExpired";
+/* Implementation of 'Corellia.kvstore' */
+static PyObject *__pyx_builtin_object;
+static PyObject *__pyx_pf_8Corellia_7kvstore_7KVStore___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_addr, PyObject *__pyx_v_name, PyObject *__pyx_v_kargs); /* proto */
+static PyObject *__pyx_pf_8Corellia_7kvstore_7KVStore_6__defaults__(CYTHON_UNUSED PyObject *__pyx_self); /* proto */
+static PyObject *__pyx_pf_8Corellia_7kvstore_7KVStore_2set(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_key, PyObject *__pyx_v_value, PyObject *__pyx_v_serialize); /* proto */
+static PyObject *__pyx_pf_8Corellia_7kvstore_7KVStore_8__defaults__(CYTHON_UNUSED PyObject *__pyx_self); /* proto */
+static PyObject *__pyx_pf_8Corellia_7kvstore_7KVStore_4get(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_key, PyObject *__pyx_v_serialize); /* proto */
+static char __pyx_k_1[] = "%s.KVS";
+static char __pyx_k_4[] = "/Users/zzm/Desktop/Corellia/Corellia/kvstore.pyx";
+static char __pyx_k_5[] = "Corellia.kvstore";
+static char __pyx_k__cmd[] = "cmd";
+static char __pyx_k__get[] = "get";
 static char __pyx_k__key[] = "key";
+static char __pyx_k__res[] = "res";
+static char __pyx_k__set[] = "set";
 static char __pyx_k__addr[] = "addr";
-static char __pyx_k__args[] = "args";
-static char __pyx_k__path[] = "path";
-static char __pyx_k__time[] = "time";
-static char __pyx_k__block[] = "block";
-static char __pyx_k__flush[] = "flush";
-static char __pyx_k__finish[] = "finish";
-static char __pyx_k__method[] = "method";
-static char __pyx_k__PUT_TASK[] = "PUT_TASK";
+static char __pyx_k__hget[] = "hget";
+static char __pyx_k__hset[] = "hset";
+static char __pyx_k__name[] = "name";
+static char __pyx_k__self[] = "self";
+static char __pyx_k__kargs[] = "kargs";
+static char __pyx_k__redis[] = "redis";
+static char __pyx_k__reply[] = "reply";
+static char __pyx_k__value[] = "value";
+static char __pyx_k__object[] = "object";
+static char __pyx_k__KVStore[] = "KVStore";
+static char __pyx_k__raw_cmd[] = "raw_cmd";
+static char __pyx_k____init__[] = "__init__";
 static char __pyx_k____main__[] = "__main__";
 static char __pyx_k____test__[] = "__test__";
-static char __pyx_k__put_task[] = "put_task";
-static char __pyx_k__TaskQueue[] = "TaskQueue";
-static char __pyx_k__taskqueue[] = "taskqueue";
-static char __pyx_k__GET_RESULT[] = "GET_RESULT";
-static char __pyx_k__get_result[] = "get_result";
-static PyObject *__pyx_n_s_2;
-static PyObject *__pyx_n_s_3;
-static PyObject *__pyx_n_s__GET_RESULT;
-static PyObject *__pyx_n_s__PUT_TASK;
-static PyObject *__pyx_n_s__TaskQueue;
+static char __pyx_k__FastRedis[] = "FastRedis";
+static char __pyx_k__fastredis[] = "fastredis";
+static char __pyx_k__serialize[] = "serialize";
+static PyObject *__pyx_kp_s_1;
+static PyObject *__pyx_kp_s_4;
+static PyObject *__pyx_n_s_5;
+static PyObject *__pyx_n_s__FastRedis;
+static PyObject *__pyx_n_s__KVStore;
+static PyObject *__pyx_n_s____init__;
 static PyObject *__pyx_n_s____main__;
 static PyObject *__pyx_n_s____test__;
 static PyObject *__pyx_n_s__addr;
-static PyObject *__pyx_n_s__args;
-static PyObject *__pyx_n_s__block;
-static PyObject *__pyx_n_s__finish;
-static PyObject *__pyx_n_s__flush;
-static PyObject *__pyx_n_s__get_result;
+static PyObject *__pyx_n_s__cmd;
+static PyObject *__pyx_n_s__fastredis;
+static PyObject *__pyx_n_s__get;
+static PyObject *__pyx_n_s__hget;
+static PyObject *__pyx_n_s__hset;
+static PyObject *__pyx_n_s__kargs;
 static PyObject *__pyx_n_s__key;
-static PyObject *__pyx_n_s__method;
-static PyObject *__pyx_n_s__path;
-static PyObject *__pyx_n_s__put_task;
-static PyObject *__pyx_n_s__taskqueue;
-static PyObject *__pyx_n_s__time;
-static PyObject *__pyx_k_1;
+static PyObject *__pyx_n_s__name;
+static PyObject *__pyx_n_s__object;
+static PyObject *__pyx_n_s__raw_cmd;
+static PyObject *__pyx_n_s__redis;
+static PyObject *__pyx_n_s__reply;
+static PyObject *__pyx_n_s__res;
+static PyObject *__pyx_n_s__self;
+static PyObject *__pyx_n_s__serialize;
+static PyObject *__pyx_n_s__set;
+static PyObject *__pyx_n_s__value;
+static PyObject *__pyx_k_tuple_2;
+static PyObject *__pyx_k_tuple_6;
+static PyObject *__pyx_k_tuple_8;
+static PyObject *__pyx_k_codeobj_3;
+static PyObject *__pyx_k_codeobj_7;
+static PyObject *__pyx_k_codeobj_9;
 
 /* Python wrapper */
-static int __pyx_pw_8Corellia_6client_6Client_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_8Corellia_6client_6Client_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  char *__pyx_v_addr;
-  char *__pyx_v_path;
+static PyObject *__pyx_pw_8Corellia_7kvstore_7KVStore_1__init__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_8Corellia_7kvstore_7KVStore_1__init__ = {__Pyx_NAMESTR("__init__"), (PyCFunction)__pyx_pw_8Corellia_7kvstore_7KVStore_1__init__, METH_VARARGS|METH_KEYWORDS, __Pyx_DOCSTR(0)};
+static PyObject *__pyx_pw_8Corellia_7kvstore_7KVStore_1__init__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_self = 0;
+  PyObject *__pyx_v_addr = 0;
+  PyObject *__pyx_v_name = 0;
   PyObject *__pyx_v_kargs = 0;
-  int __pyx_r;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__cinit__ (wrapper)", 0);
-  __pyx_v_kargs = PyDict_New(); if (unlikely(!__pyx_v_kargs)) return -1;
-  __Pyx_GOTREF(__pyx_v_kargs);
-  {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s__addr,&__pyx_n_s__path,0};
-    PyObject* values[2] = {0,0};
-    if (unlikely(__pyx_kwds)) {
-      Py_ssize_t kw_args;
-      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
-      switch (pos_args) {
-        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = PyDict_Size(__pyx_kwds);
-      switch (pos_args) {
-        case  0:
-        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s__addr)) != 0)) kw_args--;
-        else goto __pyx_L5_argtuple_error;
-        case  1:
-        if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s__path)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-        }
-      }
-      if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kargs, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-      }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-    }
-    __pyx_v_addr = PyBytes_AsString(values[0]); if (unlikely((!__pyx_v_addr) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_path = PyBytes_AsString(values[1]); if (unlikely((!__pyx_v_path) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-  }
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-  __pyx_L3_error:;
-  __Pyx_DECREF(__pyx_v_kargs); __pyx_v_kargs = 0;
-  __Pyx_AddTraceback("Corellia.client.Client.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return -1;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_8Corellia_6client_6Client___cinit__(((struct __pyx_obj_8Corellia_6client_Client *)__pyx_v_self), __pyx_v_addr, __pyx_v_path, __pyx_v_kargs);
-  __Pyx_XDECREF(__pyx_v_kargs);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "Corellia/client.pyx":9
- *     cdef str path
- * 
- *     def __cinit__(self, char* addr, char* path, **kargs):             # <<<<<<<<<<<<<<
- *         self.tq = TaskQueue(addr, path, **kargs)
- * 
- */
-
-static int __pyx_pf_8Corellia_6client_6Client___cinit__(struct __pyx_obj_8Corellia_6client_Client *__pyx_v_self, char *__pyx_v_addr, char *__pyx_v_path, PyObject *__pyx_v_kargs) {
-  int __pyx_r;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("__cinit__", 0);
-
-  /* "Corellia/client.pyx":10
- * 
- *     def __cinit__(self, char* addr, char* path, **kargs):
- *         self.tq = TaskQueue(addr, path, **kargs)             # <<<<<<<<<<<<<<
- * 
- *     cpdef str put_task(self, char* method, tuple args, key=None):
- */
-  __pyx_t_1 = __Pyx_GetName(__pyx_m, __pyx_n_s__TaskQueue); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyBytes_FromString(__pyx_v_addr); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(((PyObject *)__pyx_t_2));
-  __pyx_t_3 = PyBytes_FromString(__pyx_v_path); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(((PyObject *)__pyx_t_3));
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  PyTuple_SET_ITEM(__pyx_t_4, 0, ((PyObject *)__pyx_t_2));
-  __Pyx_GIVEREF(((PyObject *)__pyx_t_2));
-  PyTuple_SET_ITEM(__pyx_t_4, 1, ((PyObject *)__pyx_t_3));
-  __Pyx_GIVEREF(((PyObject *)__pyx_t_3));
-  __pyx_t_2 = 0;
-  __pyx_t_3 = 0;
-  __pyx_t_3 = ((PyObject *)__pyx_v_kargs);
-  __Pyx_INCREF(__pyx_t_3);
-  __pyx_t_2 = PyObject_Call(__pyx_t_1, ((PyObject *)__pyx_t_4), ((PyObject *)__pyx_t_3)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(((PyObject *)__pyx_t_4)); __pyx_t_4 = 0;
-  __Pyx_DECREF(((PyObject *)__pyx_t_3)); __pyx_t_3 = 0;
-  __Pyx_GIVEREF(__pyx_t_2);
-  __Pyx_GOTREF(__pyx_v_self->tq);
-  __Pyx_DECREF(__pyx_v_self->tq);
-  __pyx_v_self->tq = __pyx_t_2;
-  __pyx_t_2 = 0;
-
-  __pyx_r = 0;
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("Corellia.client.Client.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = -1;
-  __pyx_L0:;
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "Corellia/client.pyx":12
- *         self.tq = TaskQueue(addr, path, **kargs)
- * 
- *     cpdef str put_task(self, char* method, tuple args, key=None):             # <<<<<<<<<<<<<<
- *         return self.tq.PUT_TASK(method, args, key)
- * 
- */
-
-static PyObject *__pyx_pw_8Corellia_6client_6Client_3put_task(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_f_8Corellia_6client_6Client_put_task(struct __pyx_obj_8Corellia_6client_Client *__pyx_v_self, char *__pyx_v_method, PyObject *__pyx_v_args, int __pyx_skip_dispatch, struct __pyx_opt_args_8Corellia_6client_6Client_put_task *__pyx_optional_args) {
-  PyObject *__pyx_v_key = ((PyObject *)Py_None);
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("put_task", 0);
-  if (__pyx_optional_args) {
-    if (__pyx_optional_args->__pyx_n > 0) {
-      __pyx_v_key = __pyx_optional_args->key;
-    }
-  }
-  /* Check if called by wrapper */
-  if (unlikely(__pyx_skip_dispatch)) ;
-  /* Check if overriden in Python */
-  else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = PyObject_GetAttr(((PyObject *)__pyx_v_self), __pyx_n_s__put_task); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_8Corellia_6client_6Client_3put_task)) {
-      __Pyx_XDECREF(((PyObject *)__pyx_r));
-      __pyx_t_2 = PyBytes_FromString(__pyx_v_method); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __Pyx_GOTREF(((PyObject *)__pyx_t_2));
-      __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __Pyx_GOTREF(__pyx_t_3);
-      PyTuple_SET_ITEM(__pyx_t_3, 0, ((PyObject *)__pyx_t_2));
-      __Pyx_GIVEREF(((PyObject *)__pyx_t_2));
-      __Pyx_INCREF(((PyObject *)__pyx_v_args));
-      PyTuple_SET_ITEM(__pyx_t_3, 1, ((PyObject *)__pyx_v_args));
-      __Pyx_GIVEREF(((PyObject *)__pyx_v_args));
-      __Pyx_INCREF(__pyx_v_key);
-      PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_v_key);
-      __Pyx_GIVEREF(__pyx_v_key);
-      __pyx_t_2 = 0;
-      __pyx_t_2 = PyObject_Call(__pyx_t_1, ((PyObject *)__pyx_t_3), NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(((PyObject *)__pyx_t_3)); __pyx_t_3 = 0;
-      if (!(likely(PyString_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected str, got %.200s", Py_TYPE(__pyx_t_2)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_r = ((PyObject*)__pyx_t_2);
-      __pyx_t_2 = 0;
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      goto __pyx_L0;
-    }
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  }
-
-  /* "Corellia/client.pyx":13
- * 
- *     cpdef str put_task(self, char* method, tuple args, key=None):
- *         return self.tq.PUT_TASK(method, args, key)             # <<<<<<<<<<<<<<
- * 
- *     cpdef object get_result(self, char* key, block=True):
- */
-  __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __pyx_t_1 = PyObject_GetAttr(__pyx_v_self->tq, __pyx_n_s__PUT_TASK); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyBytes_FromString(__pyx_v_method); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(((PyObject *)__pyx_t_2));
-  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
-  PyTuple_SET_ITEM(__pyx_t_3, 0, ((PyObject *)__pyx_t_2));
-  __Pyx_GIVEREF(((PyObject *)__pyx_t_2));
-  __Pyx_INCREF(((PyObject *)__pyx_v_args));
-  PyTuple_SET_ITEM(__pyx_t_3, 1, ((PyObject *)__pyx_v_args));
-  __Pyx_GIVEREF(((PyObject *)__pyx_v_args));
-  __Pyx_INCREF(__pyx_v_key);
-  PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_v_key);
-  __Pyx_GIVEREF(__pyx_v_key);
-  __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_Call(__pyx_t_1, ((PyObject *)__pyx_t_3), NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(((PyObject *)__pyx_t_3)); __pyx_t_3 = 0;
-  if (!(likely(PyString_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected str, got %.200s", Py_TYPE(__pyx_t_2)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_r = ((PyObject*)__pyx_t_2);
-  __pyx_t_2 = 0;
-  goto __pyx_L0;
-
-  __pyx_r = ((PyObject*)Py_None); __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("Corellia.client.Client.put_task", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = 0;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* Python wrapper */
-static PyObject *__pyx_pw_8Corellia_6client_6Client_3put_task(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_8Corellia_6client_6Client_3put_task(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  char *__pyx_v_method;
-  PyObject *__pyx_v_args = 0;
-  PyObject *__pyx_v_key = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("put_task (wrapper)", 0);
+  __Pyx_RefNannySetupContext("__init__ (wrapper)", 0);
+  __pyx_v_kargs = PyDict_New(); if (unlikely(!__pyx_v_kargs)) return NULL;
+  __Pyx_GOTREF(__pyx_v_kargs);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s__method,&__pyx_n_s__args,&__pyx_n_s__key,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s__self,&__pyx_n_s__addr,&__pyx_n_s__name,0};
     PyObject* values[3] = {0,0,0};
-
-    /* "Corellia/client.pyx":12
- *         self.tq = TaskQueue(addr, path, **kargs)
- * 
- *     cpdef str put_task(self, char* method, tuple args, key=None):             # <<<<<<<<<<<<<<
- *         return self.tq.PUT_TASK(method, args, key)
- * 
- */
-    values[2] = ((PyObject *)Py_None);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
@@ -900,21 +620,436 @@ static PyObject *__pyx_pw_8Corellia_6client_6Client_3put_task(PyObject *__pyx_v_
       kw_args = PyDict_Size(__pyx_kwds);
       switch (pos_args) {
         case  0:
-        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s__method)) != 0)) kw_args--;
+        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s__self)) != 0)) kw_args--;
         else goto __pyx_L5_argtuple_error;
         case  1:
-        if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s__args)) != 0)) kw_args--;
+        if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s__addr)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("put_task", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        }
+        case  2:
+        if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s__name)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kargs, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      }
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+      values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+    }
+    __pyx_v_self = values[0];
+    __pyx_v_addr = values[1];
+    __pyx_v_name = values[2];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __pyx_L3_error:;
+  __Pyx_DECREF(__pyx_v_kargs); __pyx_v_kargs = 0;
+  __Pyx_AddTraceback("Corellia.kvstore.KVStore.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_8Corellia_7kvstore_7KVStore___init__(__pyx_self, __pyx_v_self, __pyx_v_addr, __pyx_v_name, __pyx_v_kargs);
+  __Pyx_XDECREF(__pyx_v_kargs);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "Corellia/kvstore.pyx":4
+ * 
+ * class KVStore(object):
+ *     def __init__(self, addr, name, **kargs):             # <<<<<<<<<<<<<<
+ *         self.redis = FastRedis(addr, **kargs)
+ *         self.name = "%s.KVS" % name
+ */
+
+static PyObject *__pyx_pf_8Corellia_7kvstore_7KVStore___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_addr, PyObject *__pyx_v_name, PyObject *__pyx_v_kargs) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__init__", 0);
+
+  /* "Corellia/kvstore.pyx":5
+ * class KVStore(object):
+ *     def __init__(self, addr, name, **kargs):
+ *         self.redis = FastRedis(addr, **kargs)             # <<<<<<<<<<<<<<
+ *         self.name = "%s.KVS" % name
+ * 
+ */
+  __pyx_t_1 = __Pyx_GetName(__pyx_m, __pyx_n_s__FastRedis); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 5; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 5; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_INCREF(__pyx_v_addr);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_addr);
+  __Pyx_GIVEREF(__pyx_v_addr);
+  __pyx_t_3 = ((PyObject *)__pyx_v_kargs);
+  __Pyx_INCREF(__pyx_t_3);
+  __pyx_t_4 = PyObject_Call(__pyx_t_1, ((PyObject *)__pyx_t_2), ((PyObject *)__pyx_t_3)); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 5; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(((PyObject *)__pyx_t_2)); __pyx_t_2 = 0;
+  __Pyx_DECREF(((PyObject *)__pyx_t_3)); __pyx_t_3 = 0;
+  if (PyObject_SetAttr(__pyx_v_self, __pyx_n_s__redis, __pyx_t_4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 5; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "Corellia/kvstore.pyx":6
+ *     def __init__(self, addr, name, **kargs):
+ *         self.redis = FastRedis(addr, **kargs)
+ *         self.name = "%s.KVS" % name             # <<<<<<<<<<<<<<
+ * 
+ *     def set(self, key, value, serialize=True):
+ */
+  __pyx_t_4 = PyNumber_Remainder(((PyObject *)__pyx_kp_s_1), __pyx_v_name); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 6; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(((PyObject *)__pyx_t_4));
+  if (PyObject_SetAttr(__pyx_v_self, __pyx_n_s__name, ((PyObject *)__pyx_t_4)) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 6; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(((PyObject *)__pyx_t_4)); __pyx_t_4 = 0;
+
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_AddTraceback("Corellia.kvstore.KVStore.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "Corellia/kvstore.pyx":8
+ *         self.name = "%s.KVS" % name
+ * 
+ *     def set(self, key, value, serialize=True):             # <<<<<<<<<<<<<<
+ *         if serialize:
+ *             self.redis.cmd("hset", (self.name, key, value))
+ */
+
+static PyObject *__pyx_pf_8Corellia_7kvstore_7KVStore_6__defaults__(CYTHON_UNUSED PyObject *__pyx_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__defaults__", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 8; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_INCREF(__Pyx_CyFunction_Defaults(__pyx_defaults, __pyx_self)->__pyx_arg_serialize);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __Pyx_CyFunction_Defaults(__pyx_defaults, __pyx_self)->__pyx_arg_serialize);
+  __Pyx_GIVEREF(__Pyx_CyFunction_Defaults(__pyx_defaults, __pyx_self)->__pyx_arg_serialize);
+  __pyx_r = ((PyObject *)__pyx_t_1);
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("Corellia.kvstore.KVStore.__defaults__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_8Corellia_7kvstore_7KVStore_3set(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_8Corellia_7kvstore_7KVStore_3set = {__Pyx_NAMESTR("set"), (PyCFunction)__pyx_pw_8Corellia_7kvstore_7KVStore_3set, METH_VARARGS|METH_KEYWORDS, __Pyx_DOCSTR(0)};
+static PyObject *__pyx_pw_8Corellia_7kvstore_7KVStore_3set(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_self = 0;
+  PyObject *__pyx_v_key = 0;
+  PyObject *__pyx_v_value = 0;
+  PyObject *__pyx_v_serialize = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("set (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s__self,&__pyx_n_s__key,&__pyx_n_s__value,&__pyx_n_s__serialize,0};
+    PyObject* values[4] = {0,0,0,0};
+    __pyx_defaults *__pyx_dynamic_args = __Pyx_CyFunction_Defaults(__pyx_defaults, __pyx_self);
+    values[3] = __pyx_dynamic_args->__pyx_arg_serialize;
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s__self)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        case  1:
+        if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s__key)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("set", 0, 3, 4, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 8; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        }
+        case  2:
+        if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s__value)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("set", 0, 3, 4, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 8; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        }
+        case  3:
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s__serialize);
+          if (value) { values[3] = value; kw_args--; }
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "set") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 8; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      }
+    } else {
+      switch (PyTuple_GET_SIZE(__pyx_args)) {
+        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+    }
+    __pyx_v_self = values[0];
+    __pyx_v_key = values[1];
+    __pyx_v_value = values[2];
+    __pyx_v_serialize = values[3];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("set", 0, 3, 4, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 8; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("Corellia.kvstore.KVStore.set", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_8Corellia_7kvstore_7KVStore_2set(__pyx_self, __pyx_v_self, __pyx_v_key, __pyx_v_value, __pyx_v_serialize);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_8Corellia_7kvstore_7KVStore_2set(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_key, PyObject *__pyx_v_value, PyObject *__pyx_v_serialize) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("set", 0);
+
+  /* "Corellia/kvstore.pyx":9
+ * 
+ *     def set(self, key, value, serialize=True):
+ *         if serialize:             # <<<<<<<<<<<<<<
+ *             self.redis.cmd("hset", (self.name, key, value))
+ *         else:
+ */
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_serialize); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__pyx_t_1) {
+
+    /* "Corellia/kvstore.pyx":10
+ *     def set(self, key, value, serialize=True):
+ *         if serialize:
+ *             self.redis.cmd("hset", (self.name, key, value))             # <<<<<<<<<<<<<<
+ *         else:
+ *             self.redis.raw_cmd("hset", (self.name, key, value))
+ */
+    __pyx_t_2 = PyObject_GetAttr(__pyx_v_self, __pyx_n_s__redis); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_3 = PyObject_GetAttr(__pyx_t_2, __pyx_n_s__cmd); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_2 = PyObject_GetAttr(__pyx_v_self, __pyx_n_s__name); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2);
+    __Pyx_GIVEREF(__pyx_t_2);
+    __Pyx_INCREF(__pyx_v_key);
+    PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_key);
+    __Pyx_GIVEREF(__pyx_v_key);
+    __Pyx_INCREF(__pyx_v_value);
+    PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_v_value);
+    __Pyx_GIVEREF(__pyx_v_value);
+    __pyx_t_2 = 0;
+    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_INCREF(((PyObject *)__pyx_n_s__hset));
+    PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_n_s__hset));
+    __Pyx_GIVEREF(((PyObject *)__pyx_n_s__hset));
+    PyTuple_SET_ITEM(__pyx_t_2, 1, ((PyObject *)__pyx_t_4));
+    __Pyx_GIVEREF(((PyObject *)__pyx_t_4));
+    __pyx_t_4 = 0;
+    __pyx_t_4 = PyObject_Call(__pyx_t_3, ((PyObject *)__pyx_t_2), NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(((PyObject *)__pyx_t_2)); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    goto __pyx_L3;
+  }
+  /*else*/ {
+
+    /* "Corellia/kvstore.pyx":12
+ *             self.redis.cmd("hset", (self.name, key, value))
+ *         else:
+ *             self.redis.raw_cmd("hset", (self.name, key, value))             # <<<<<<<<<<<<<<
+ * 
+ *     def get(self, key, serialize=False):
+ */
+    __pyx_t_4 = PyObject_GetAttr(__pyx_v_self, __pyx_n_s__redis); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_2 = PyObject_GetAttr(__pyx_t_4, __pyx_n_s__raw_cmd); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_4 = PyObject_GetAttr(__pyx_v_self, __pyx_n_s__name); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4);
+    __Pyx_GIVEREF(__pyx_t_4);
+    __Pyx_INCREF(__pyx_v_key);
+    PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_key);
+    __Pyx_GIVEREF(__pyx_v_key);
+    __Pyx_INCREF(__pyx_v_value);
+    PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_v_value);
+    __Pyx_GIVEREF(__pyx_v_value);
+    __pyx_t_4 = 0;
+    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_INCREF(((PyObject *)__pyx_n_s__hset));
+    PyTuple_SET_ITEM(__pyx_t_4, 0, ((PyObject *)__pyx_n_s__hset));
+    __Pyx_GIVEREF(((PyObject *)__pyx_n_s__hset));
+    PyTuple_SET_ITEM(__pyx_t_4, 1, ((PyObject *)__pyx_t_3));
+    __Pyx_GIVEREF(((PyObject *)__pyx_t_3));
+    __pyx_t_3 = 0;
+    __pyx_t_3 = PyObject_Call(__pyx_t_2, ((PyObject *)__pyx_t_4), NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(((PyObject *)__pyx_t_4)); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  }
+  __pyx_L3:;
+
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_AddTraceback("Corellia.kvstore.KVStore.set", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "Corellia/kvstore.pyx":14
+ *             self.redis.raw_cmd("hset", (self.name, key, value))
+ * 
+ *     def get(self, key, serialize=False):             # <<<<<<<<<<<<<<
+ *         if serialize:
+ *             res = self.redis.cmd("hget", (self.name, key)).reply()
+ */
+
+static PyObject *__pyx_pf_8Corellia_7kvstore_7KVStore_8__defaults__(CYTHON_UNUSED PyObject *__pyx_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__defaults__", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_INCREF(__Pyx_CyFunction_Defaults(__pyx_defaults1, __pyx_self)->__pyx_arg_serialize);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __Pyx_CyFunction_Defaults(__pyx_defaults1, __pyx_self)->__pyx_arg_serialize);
+  __Pyx_GIVEREF(__Pyx_CyFunction_Defaults(__pyx_defaults1, __pyx_self)->__pyx_arg_serialize);
+  __pyx_r = ((PyObject *)__pyx_t_1);
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("Corellia.kvstore.KVStore.__defaults__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_8Corellia_7kvstore_7KVStore_5get(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_8Corellia_7kvstore_7KVStore_5get = {__Pyx_NAMESTR("get"), (PyCFunction)__pyx_pw_8Corellia_7kvstore_7KVStore_5get, METH_VARARGS|METH_KEYWORDS, __Pyx_DOCSTR(0)};
+static PyObject *__pyx_pw_8Corellia_7kvstore_7KVStore_5get(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_self = 0;
+  PyObject *__pyx_v_key = 0;
+  PyObject *__pyx_v_serialize = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("get (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s__self,&__pyx_n_s__key,&__pyx_n_s__serialize,0};
+    PyObject* values[3] = {0,0,0};
+    __pyx_defaults1 *__pyx_dynamic_args = __Pyx_CyFunction_Defaults(__pyx_defaults1, __pyx_self);
+    values[2] = __pyx_dynamic_args->__pyx_arg_serialize;
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s__self)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        case  1:
+        if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s__key)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("get", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
-          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s__key);
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s__serialize);
           if (value) { values[2] = value; kw_args--; }
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "put_task") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -925,941 +1060,154 @@ static PyObject *__pyx_pw_8Corellia_6client_6Client_3put_task(PyObject *__pyx_v_
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_method = PyBytes_AsString(values[0]); if (unlikely((!__pyx_v_method) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_args = ((PyObject*)values[1]);
-    __pyx_v_key = values[2];
+    __pyx_v_self = values[0];
+    __pyx_v_key = values[1];
+    __pyx_v_serialize = values[2];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("put_task", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("get", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
-  __Pyx_AddTraceback("Corellia.client.Client.put_task", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Corellia.kvstore.KVStore.get", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_args), (&PyTuple_Type), 1, "args", 1))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_r = __pyx_pf_8Corellia_6client_6Client_2put_task(((struct __pyx_obj_8Corellia_6client_Client *)__pyx_v_self), __pyx_v_method, __pyx_v_args, __pyx_v_key);
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __pyx_r = NULL;
-  __pyx_L0:;
+  __pyx_r = __pyx_pf_8Corellia_7kvstore_7KVStore_4get(__pyx_self, __pyx_v_self, __pyx_v_key, __pyx_v_serialize);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8Corellia_6client_6Client_2put_task(struct __pyx_obj_8Corellia_6client_Client *__pyx_v_self, char *__pyx_v_method, PyObject *__pyx_v_args, PyObject *__pyx_v_key) {
+static PyObject *__pyx_pf_8Corellia_7kvstore_7KVStore_4get(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_key, PyObject *__pyx_v_serialize) {
+  PyObject *__pyx_v_res = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  struct __pyx_opt_args_8Corellia_6client_6Client_put_task __pyx_t_2;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("put_task", 0);
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2.__pyx_n = 1;
-  __pyx_t_2.key = __pyx_v_key;
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_8Corellia_6client_Client *)__pyx_v_self->__pyx_vtab)->put_task(__pyx_v_self, __pyx_v_method, __pyx_v_args, 1, &__pyx_t_2)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Corellia.client.Client.put_task", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "Corellia/client.pyx":15
- *         return self.tq.PUT_TASK(method, args, key)
- * 
- *     cpdef object get_result(self, char* key, block=True):             # <<<<<<<<<<<<<<
- *         return self.tq.GET_RESULT(key, block)
- * 
- */
-
-static PyObject *__pyx_pw_8Corellia_6client_6Client_5get_result(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_f_8Corellia_6client_6Client_get_result(struct __pyx_obj_8Corellia_6client_Client *__pyx_v_self, char *__pyx_v_key, int __pyx_skip_dispatch, struct __pyx_opt_args_8Corellia_6client_6Client_get_result *__pyx_optional_args) {
-  PyObject *__pyx_v_block = __pyx_k_1;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("get_result", 0);
-  if (__pyx_optional_args) {
-    if (__pyx_optional_args->__pyx_n > 0) {
-      __pyx_v_block = __pyx_optional_args->block;
-    }
-  }
-  /* Check if called by wrapper */
-  if (unlikely(__pyx_skip_dispatch)) ;
-  /* Check if overriden in Python */
-  else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = PyObject_GetAttr(((PyObject *)__pyx_v_self), __pyx_n_s__get_result); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_8Corellia_6client_6Client_5get_result)) {
-      __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = PyBytes_FromString(__pyx_v_key); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __Pyx_GOTREF(((PyObject *)__pyx_t_2));
-      __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __Pyx_GOTREF(__pyx_t_3);
-      PyTuple_SET_ITEM(__pyx_t_3, 0, ((PyObject *)__pyx_t_2));
-      __Pyx_GIVEREF(((PyObject *)__pyx_t_2));
-      __Pyx_INCREF(__pyx_v_block);
-      PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_block);
-      __Pyx_GIVEREF(__pyx_v_block);
-      __pyx_t_2 = 0;
-      __pyx_t_2 = PyObject_Call(__pyx_t_1, ((PyObject *)__pyx_t_3), NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(((PyObject *)__pyx_t_3)); __pyx_t_3 = 0;
-      __pyx_r = __pyx_t_2;
-      __pyx_t_2 = 0;
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      goto __pyx_L0;
-    }
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  }
-
-  /* "Corellia/client.pyx":16
- * 
- *     cpdef object get_result(self, char* key, block=True):
- *         return self.tq.GET_RESULT(key, block)             # <<<<<<<<<<<<<<
- * 
- *     cpdef finish(self):
- */
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyObject_GetAttr(__pyx_v_self->tq, __pyx_n_s__GET_RESULT); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyBytes_FromString(__pyx_v_key); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(((PyObject *)__pyx_t_2));
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
-  PyTuple_SET_ITEM(__pyx_t_3, 0, ((PyObject *)__pyx_t_2));
-  __Pyx_GIVEREF(((PyObject *)__pyx_t_2));
-  __Pyx_INCREF(__pyx_v_block);
-  PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_block);
-  __Pyx_GIVEREF(__pyx_v_block);
-  __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_Call(__pyx_t_1, ((PyObject *)__pyx_t_3), NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(((PyObject *)__pyx_t_3)); __pyx_t_3 = 0;
-  __pyx_r = __pyx_t_2;
-  __pyx_t_2 = 0;
-  goto __pyx_L0;
-
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("Corellia.client.Client.get_result", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = 0;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* Python wrapper */
-static PyObject *__pyx_pw_8Corellia_6client_6Client_5get_result(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_8Corellia_6client_6Client_5get_result(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  char *__pyx_v_key;
-  PyObject *__pyx_v_block = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("get_result (wrapper)", 0);
-  {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s__key,&__pyx_n_s__block,0};
-    PyObject* values[2] = {0,0};
-    values[1] = __pyx_k_1;
-    if (unlikely(__pyx_kwds)) {
-      Py_ssize_t kw_args;
-      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
-      switch (pos_args) {
-        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = PyDict_Size(__pyx_kwds);
-      switch (pos_args) {
-        case  0:
-        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s__key)) != 0)) kw_args--;
-        else goto __pyx_L5_argtuple_error;
-        case  1:
-        if (kw_args > 0) {
-          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s__block);
-          if (value) { values[1] = value; kw_args--; }
-        }
-      }
-      if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_result") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-      }
-    } else {
-      switch (PyTuple_GET_SIZE(__pyx_args)) {
-        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-        break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-    }
-    __pyx_v_key = PyBytes_AsString(values[0]); if (unlikely((!__pyx_v_key) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_block = values[1];
-  }
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_result", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-  __pyx_L3_error:;
-  __Pyx_AddTraceback("Corellia.client.Client.get_result", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_8Corellia_6client_6Client_4get_result(((struct __pyx_obj_8Corellia_6client_Client *)__pyx_v_self), __pyx_v_key, __pyx_v_block);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "Corellia/client.pyx":15
- *         return self.tq.PUT_TASK(method, args, key)
- * 
- *     cpdef object get_result(self, char* key, block=True):             # <<<<<<<<<<<<<<
- *         return self.tq.GET_RESULT(key, block)
- * 
- */
-
-static PyObject *__pyx_pf_8Corellia_6client_6Client_4get_result(struct __pyx_obj_8Corellia_6client_Client *__pyx_v_self, char *__pyx_v_key, PyObject *__pyx_v_block) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  struct __pyx_opt_args_8Corellia_6client_6Client_get_result __pyx_t_2;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("get_result", 0);
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2.__pyx_n = 1;
-  __pyx_t_2.block = __pyx_v_block;
-  __pyx_t_1 = ((struct __pyx_vtabstruct_8Corellia_6client_Client *)__pyx_v_self->__pyx_vtab)->get_result(__pyx_v_self, __pyx_v_key, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Corellia.client.Client.get_result", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "Corellia/client.pyx":18
- *         return self.tq.GET_RESULT(key, block)
- * 
- *     cpdef finish(self):             # <<<<<<<<<<<<<<
- *         self.tq.flush()
- * 
- */
-
-static PyObject *__pyx_pw_8Corellia_6client_6Client_7finish(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_f_8Corellia_6client_6Client_finish(struct __pyx_obj_8Corellia_6client_Client *__pyx_v_self, int __pyx_skip_dispatch) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("finish", 0);
-  /* Check if called by wrapper */
-  if (unlikely(__pyx_skip_dispatch)) ;
-  /* Check if overriden in Python */
-  else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = PyObject_GetAttr(((PyObject *)__pyx_v_self), __pyx_n_s__finish); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_8Corellia_6client_6Client_7finish)) {
-      __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = PyObject_Call(__pyx_t_1, ((PyObject *)__pyx_empty_tuple), NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __Pyx_GOTREF(__pyx_t_2);
-      __pyx_r = __pyx_t_2;
-      __pyx_t_2 = 0;
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      goto __pyx_L0;
-    }
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  }
-
-  /* "Corellia/client.pyx":19
- * 
- *     cpdef finish(self):
- *         self.tq.flush()             # <<<<<<<<<<<<<<
- * 
- *     def __getattr__(self, char* method):
- */
-  __pyx_t_1 = PyObject_GetAttr(__pyx_v_self->tq, __pyx_n_s__flush); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 19; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_Call(__pyx_t_1, ((PyObject *)__pyx_empty_tuple), NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 19; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("Corellia.client.Client.finish", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = 0;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* Python wrapper */
-static PyObject *__pyx_pw_8Corellia_6client_6Client_7finish(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_8Corellia_6client_6Client_7finish(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("finish (wrapper)", 0);
-  __pyx_r = __pyx_pf_8Corellia_6client_6Client_6finish(((struct __pyx_obj_8Corellia_6client_Client *)__pyx_v_self));
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "Corellia/client.pyx":18
- *         return self.tq.GET_RESULT(key, block)
- * 
- *     cpdef finish(self):             # <<<<<<<<<<<<<<
- *         self.tq.flush()
- * 
- */
-
-static PyObject *__pyx_pf_8Corellia_6client_6Client_6finish(struct __pyx_obj_8Corellia_6client_Client *__pyx_v_self) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("finish", 0);
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_8Corellia_6client_Client *)__pyx_v_self->__pyx_vtab)->finish(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Corellia.client.Client.finish", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* Python wrapper */
-static PyObject *__pyx_pw_8Corellia_6client_6Client_9__getattr__(PyObject *__pyx_v_self, PyObject *__pyx_arg_method); /*proto*/
-static PyObject *__pyx_pw_8Corellia_6client_6Client_9__getattr__(PyObject *__pyx_v_self, PyObject *__pyx_arg_method) {
-  char *__pyx_v_method;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__getattr__ (wrapper)", 0);
-  assert(__pyx_arg_method); {
-    __pyx_v_method = PyBytes_AsString(__pyx_arg_method); if (unlikely((!__pyx_v_method) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 21; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-  }
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  __Pyx_AddTraceback("Corellia.client.Client.__getattr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_8Corellia_6client_6Client_8__getattr__(((struct __pyx_obj_8Corellia_6client_Client *)__pyx_v_self), ((char *)__pyx_v_method));
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* Python wrapper */
-static PyObject *__pyx_pw_8Corellia_6client_6Client_11__getattr___lambda1(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_8Corellia_6client_6Client_11__getattr___lambda1 = {__Pyx_NAMESTR("lambda1"), (PyCFunction)__pyx_pw_8Corellia_6client_6Client_11__getattr___lambda1, METH_VARARGS|METH_KEYWORDS, __Pyx_DOCSTR(0)};
-static PyObject *__pyx_pw_8Corellia_6client_6Client_11__getattr___lambda1(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_args = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("lambda1 (wrapper)", 0);
-  if (unlikely(__pyx_kwds) && unlikely(PyDict_Size(__pyx_kwds) > 0) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "lambda1", 0))) return NULL;
-  __Pyx_INCREF(__pyx_args);
-  __pyx_v_args = __pyx_args;
-  __pyx_r = __pyx_lambda_funcdef_lambda1(__pyx_self, __pyx_v_args);
-  __Pyx_XDECREF(__pyx_v_args);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "Corellia/client.pyx":22
- * 
- *     def __getattr__(self, char* method):
- *         return lambda *args: \             # <<<<<<<<<<<<<<
- *             self.get_result(self.put_task(method, args), \
- *                             block=True)
- */
-
-static PyObject *__pyx_lambda_funcdef_lambda1(PyObject *__pyx_self, PyObject *__pyx_v_args) {
-  struct __pyx_obj_8Corellia_6client___pyx_scope_struct____getattr__ *__pyx_cur_scope;
-  struct __pyx_obj_8Corellia_6client___pyx_scope_struct____getattr__ *__pyx_outer_scope;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
+  int __pyx_t_1;
   PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("lambda1", 0);
-  __pyx_outer_scope = (struct __pyx_obj_8Corellia_6client___pyx_scope_struct____getattr__ *) __Pyx_CyFunction_GetClosure(__pyx_self);
-  __pyx_cur_scope = __pyx_outer_scope;
+  __Pyx_RefNannySetupContext("get", 0);
 
-  /* "Corellia/client.pyx":23
- *     def __getattr__(self, char* method):
- *         return lambda *args: \
- *             self.get_result(self.put_task(method, args), \             # <<<<<<<<<<<<<<
- *                             block=True)
+  /* "Corellia/kvstore.pyx":15
+ * 
+ *     def get(self, key, serialize=False):
+ *         if serialize:             # <<<<<<<<<<<<<<
+ *             res = self.redis.cmd("hget", (self.name, key)).reply()
+ *         else:
+ */
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_serialize); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__pyx_t_1) {
+
+    /* "Corellia/kvstore.pyx":16
+ *     def get(self, key, serialize=False):
+ *         if serialize:
+ *             res = self.redis.cmd("hget", (self.name, key)).reply()             # <<<<<<<<<<<<<<
+ *         else:
+ *             res = self.redis.raw_cmd("hget", (self.name, key))
+ */
+    __pyx_t_2 = PyObject_GetAttr(__pyx_v_self, __pyx_n_s__redis); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_3 = PyObject_GetAttr(__pyx_t_2, __pyx_n_s__cmd); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_2 = PyObject_GetAttr(__pyx_v_self, __pyx_n_s__name); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2);
+    __Pyx_GIVEREF(__pyx_t_2);
+    __Pyx_INCREF(__pyx_v_key);
+    PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_key);
+    __Pyx_GIVEREF(__pyx_v_key);
+    __pyx_t_2 = 0;
+    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_INCREF(((PyObject *)__pyx_n_s__hget));
+    PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_n_s__hget));
+    __Pyx_GIVEREF(((PyObject *)__pyx_n_s__hget));
+    PyTuple_SET_ITEM(__pyx_t_2, 1, ((PyObject *)__pyx_t_4));
+    __Pyx_GIVEREF(((PyObject *)__pyx_t_4));
+    __pyx_t_4 = 0;
+    __pyx_t_4 = PyObject_Call(__pyx_t_3, ((PyObject *)__pyx_t_2), NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(((PyObject *)__pyx_t_2)); __pyx_t_2 = 0;
+    __pyx_t_2 = PyObject_GetAttr(__pyx_t_4, __pyx_n_s__reply); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_4 = PyObject_Call(__pyx_t_2, ((PyObject *)__pyx_empty_tuple), NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_v_res = __pyx_t_4;
+    __pyx_t_4 = 0;
+    goto __pyx_L3;
+  }
+  /*else*/ {
+
+    /* "Corellia/kvstore.pyx":18
+ *             res = self.redis.cmd("hget", (self.name, key)).reply()
+ *         else:
+ *             res = self.redis.raw_cmd("hget", (self.name, key))             # <<<<<<<<<<<<<<
+ *         return res
+ */
+    __pyx_t_4 = PyObject_GetAttr(__pyx_v_self, __pyx_n_s__redis); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_2 = PyObject_GetAttr(__pyx_t_4, __pyx_n_s__raw_cmd); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_4 = PyObject_GetAttr(__pyx_v_self, __pyx_n_s__name); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4);
+    __Pyx_GIVEREF(__pyx_t_4);
+    __Pyx_INCREF(__pyx_v_key);
+    PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_key);
+    __Pyx_GIVEREF(__pyx_v_key);
+    __pyx_t_4 = 0;
+    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_INCREF(((PyObject *)__pyx_n_s__hget));
+    PyTuple_SET_ITEM(__pyx_t_4, 0, ((PyObject *)__pyx_n_s__hget));
+    __Pyx_GIVEREF(((PyObject *)__pyx_n_s__hget));
+    PyTuple_SET_ITEM(__pyx_t_4, 1, ((PyObject *)__pyx_t_3));
+    __Pyx_GIVEREF(((PyObject *)__pyx_t_3));
+    __pyx_t_3 = 0;
+    __pyx_t_3 = PyObject_Call(__pyx_t_2, ((PyObject *)__pyx_t_4), NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(((PyObject *)__pyx_t_4)); __pyx_t_4 = 0;
+    __pyx_v_res = __pyx_t_3;
+    __pyx_t_3 = 0;
+  }
+  __pyx_L3:;
+
+  /* "Corellia/kvstore.pyx":19
+ *         else:
+ *             res = self.redis.raw_cmd("hget", (self.name, key))
+ *         return res             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_cur_scope->__pyx_v_self)) { __Pyx_RaiseClosureNameError("self"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = PyObject_GetAttr(((PyObject *)__pyx_cur_scope->__pyx_v_self), __pyx_n_s__get_result); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = ((PyObject *)((struct __pyx_vtabstruct_8Corellia_6client_Client *)__pyx_cur_scope->__pyx_v_self->__pyx_vtab)->put_task(__pyx_cur_scope->__pyx_v_self, __pyx_cur_scope->__pyx_v_method, __pyx_v_args, 0, NULL)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
-  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_2);
-  __pyx_t_2 = 0;
-  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(((PyObject *)__pyx_t_2));
-
-  /* "Corellia/client.pyx":24
- *         return lambda *args: \
- *             self.get_result(self.put_task(method, args), \
- *                             block=True)             # <<<<<<<<<<<<<<
- */
-  __pyx_t_4 = __Pyx_PyBool_FromLong(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 24; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_2, ((PyObject *)__pyx_n_s__block), __pyx_t_4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyObject_Call(__pyx_t_1, ((PyObject *)__pyx_t_3), ((PyObject *)__pyx_t_2)); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(((PyObject *)__pyx_t_3)); __pyx_t_3 = 0;
-  __Pyx_DECREF(((PyObject *)__pyx_t_2)); __pyx_t_2 = 0;
-  __pyx_r = __pyx_t_4;
-  __pyx_t_4 = 0;
+  __Pyx_INCREF(__pyx_v_res);
+  __pyx_r = __pyx_v_res;
   goto __pyx_L0;
 
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("Corellia.client.Client.__getattr__.lambda1", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("Corellia.kvstore.KVStore.get", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_res);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
-
-/* "Corellia/client.pyx":21
- *         self.tq.flush()
- * 
- *     def __getattr__(self, char* method):             # <<<<<<<<<<<<<<
- *         return lambda *args: \
- *             self.get_result(self.put_task(method, args), \
- */
-
-static PyObject *__pyx_pf_8Corellia_6client_6Client_8__getattr__(struct __pyx_obj_8Corellia_6client_Client *__pyx_v_self, char *__pyx_v_method) {
-  struct __pyx_obj_8Corellia_6client___pyx_scope_struct____getattr__ *__pyx_cur_scope;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("__getattr__", 0);
-  __pyx_cur_scope = (struct __pyx_obj_8Corellia_6client___pyx_scope_struct____getattr__ *)__pyx_ptype_8Corellia_6client___pyx_scope_struct____getattr__->tp_new(__pyx_ptype_8Corellia_6client___pyx_scope_struct____getattr__, __pyx_empty_tuple, NULL);
-  if (unlikely(!__pyx_cur_scope)) {
-    __Pyx_RefNannyFinishContext();
-    return NULL;
-  }
-  __Pyx_GOTREF(__pyx_cur_scope);
-  __pyx_cur_scope->__pyx_v_self = __pyx_v_self;
-  __Pyx_INCREF((PyObject *)__pyx_cur_scope->__pyx_v_self);
-  __Pyx_GIVEREF((PyObject *)__pyx_cur_scope->__pyx_v_self);
-  __pyx_cur_scope->__pyx_v_method = __pyx_v_method;
-
-  /* "Corellia/client.pyx":22
- * 
- *     def __getattr__(self, char* method):
- *         return lambda *args: \             # <<<<<<<<<<<<<<
- *             self.get_result(self.put_task(method, args), \
- *                             block=True)
- */
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_8Corellia_6client_6Client_11__getattr___lambda1, 0, ((PyObject*)__pyx_cur_scope), __pyx_n_s_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 22; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("Corellia.client.Client.__getattr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_DECREF(((PyObject *)__pyx_cur_scope));
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-static struct __pyx_vtabstruct_8Corellia_6client_Client __pyx_vtable_8Corellia_6client_Client;
-
-static PyObject *__pyx_tp_new_8Corellia_6client_Client(PyTypeObject *t, PyObject *a, PyObject *k) {
-  struct __pyx_obj_8Corellia_6client_Client *p;
-  PyObject *o = (*t->tp_alloc)(t, 0);
-  if (!o) return 0;
-  p = ((struct __pyx_obj_8Corellia_6client_Client *)o);
-  p->__pyx_vtab = __pyx_vtabptr_8Corellia_6client_Client;
-  p->tq = Py_None; Py_INCREF(Py_None);
-  p->path = ((PyObject*)Py_None); Py_INCREF(Py_None);
-  if (__pyx_pw_8Corellia_6client_6Client_1__cinit__(o, a, k) < 0) {
-    Py_DECREF(o); o = 0;
-  }
-  return o;
-}
-
-static void __pyx_tp_dealloc_8Corellia_6client_Client(PyObject *o) {
-  struct __pyx_obj_8Corellia_6client_Client *p = (struct __pyx_obj_8Corellia_6client_Client *)o;
-  PyObject_GC_UnTrack(o);
-  Py_CLEAR(p->tq);
-  Py_CLEAR(p->path);
-  PyObject_GC_Track(o);
-  (*Py_TYPE(o)->tp_free)(o);
-}
-
-static int __pyx_tp_traverse_8Corellia_6client_Client(PyObject *o, visitproc v, void *a) {
-  int e;
-  struct __pyx_obj_8Corellia_6client_Client *p = (struct __pyx_obj_8Corellia_6client_Client *)o;
-  if (p->tq) {
-    e = (*v)(p->tq, a); if (e) return e;
-  }
-  if (p->path) {
-    e = (*v)(p->path, a); if (e) return e;
-  }
-  return 0;
-}
-
-static int __pyx_tp_clear_8Corellia_6client_Client(PyObject *o) {
-  struct __pyx_obj_8Corellia_6client_Client *p = (struct __pyx_obj_8Corellia_6client_Client *)o;
-  PyObject* tmp;
-  tmp = ((PyObject*)p->tq);
-  p->tq = Py_None; Py_INCREF(Py_None);
-  Py_XDECREF(tmp);
-  tmp = ((PyObject*)p->path);
-  p->path = ((PyObject*)Py_None); Py_INCREF(Py_None);
-  Py_XDECREF(tmp);
-  return 0;
-}
-
-static PyObject *__pyx_tp_getattro_8Corellia_6client_Client(PyObject *o, PyObject *n) {
-  PyObject *v = PyObject_GenericGetAttr(o, n);
-  if (!v && PyErr_ExceptionMatches(PyExc_AttributeError)) {
-    PyErr_Clear();
-    v = __pyx_pw_8Corellia_6client_6Client_9__getattr__(o, n);
-  }
-  return v;
-}
-
-static PyMethodDef __pyx_methods_8Corellia_6client_Client[] = {
-  {__Pyx_NAMESTR("put_task"), (PyCFunction)__pyx_pw_8Corellia_6client_6Client_3put_task, METH_VARARGS|METH_KEYWORDS, __Pyx_DOCSTR(0)},
-  {__Pyx_NAMESTR("get_result"), (PyCFunction)__pyx_pw_8Corellia_6client_6Client_5get_result, METH_VARARGS|METH_KEYWORDS, __Pyx_DOCSTR(0)},
-  {__Pyx_NAMESTR("finish"), (PyCFunction)__pyx_pw_8Corellia_6client_6Client_7finish, METH_NOARGS, __Pyx_DOCSTR(0)},
-  {__Pyx_NAMESTR("__getattr__"), (PyCFunction)__pyx_pw_8Corellia_6client_6Client_9__getattr__, METH_O|METH_COEXIST, __Pyx_DOCSTR(0)},
-  {0, 0, 0, 0}
-};
-
-static PyNumberMethods __pyx_tp_as_number_Client = {
-  0, /*nb_add*/
-  0, /*nb_subtract*/
-  0, /*nb_multiply*/
-  #if PY_MAJOR_VERSION < 3
-  0, /*nb_divide*/
-  #endif
-  0, /*nb_remainder*/
-  0, /*nb_divmod*/
-  0, /*nb_power*/
-  0, /*nb_negative*/
-  0, /*nb_positive*/
-  0, /*nb_absolute*/
-  0, /*nb_nonzero*/
-  0, /*nb_invert*/
-  0, /*nb_lshift*/
-  0, /*nb_rshift*/
-  0, /*nb_and*/
-  0, /*nb_xor*/
-  0, /*nb_or*/
-  #if PY_MAJOR_VERSION < 3
-  0, /*nb_coerce*/
-  #endif
-  0, /*nb_int*/
-  #if PY_MAJOR_VERSION < 3
-  0, /*nb_long*/
-  #else
-  0, /*reserved*/
-  #endif
-  0, /*nb_float*/
-  #if PY_MAJOR_VERSION < 3
-  0, /*nb_oct*/
-  #endif
-  #if PY_MAJOR_VERSION < 3
-  0, /*nb_hex*/
-  #endif
-  0, /*nb_inplace_add*/
-  0, /*nb_inplace_subtract*/
-  0, /*nb_inplace_multiply*/
-  #if PY_MAJOR_VERSION < 3
-  0, /*nb_inplace_divide*/
-  #endif
-  0, /*nb_inplace_remainder*/
-  0, /*nb_inplace_power*/
-  0, /*nb_inplace_lshift*/
-  0, /*nb_inplace_rshift*/
-  0, /*nb_inplace_and*/
-  0, /*nb_inplace_xor*/
-  0, /*nb_inplace_or*/
-  0, /*nb_floor_divide*/
-  0, /*nb_true_divide*/
-  0, /*nb_inplace_floor_divide*/
-  0, /*nb_inplace_true_divide*/
-  #if PY_VERSION_HEX >= 0x02050000
-  0, /*nb_index*/
-  #endif
-};
-
-static PySequenceMethods __pyx_tp_as_sequence_Client = {
-  0, /*sq_length*/
-  0, /*sq_concat*/
-  0, /*sq_repeat*/
-  0, /*sq_item*/
-  0, /*sq_slice*/
-  0, /*sq_ass_item*/
-  0, /*sq_ass_slice*/
-  0, /*sq_contains*/
-  0, /*sq_inplace_concat*/
-  0, /*sq_inplace_repeat*/
-};
-
-static PyMappingMethods __pyx_tp_as_mapping_Client = {
-  0, /*mp_length*/
-  0, /*mp_subscript*/
-  0, /*mp_ass_subscript*/
-};
-
-static PyBufferProcs __pyx_tp_as_buffer_Client = {
-  #if PY_MAJOR_VERSION < 3
-  0, /*bf_getreadbuffer*/
-  #endif
-  #if PY_MAJOR_VERSION < 3
-  0, /*bf_getwritebuffer*/
-  #endif
-  #if PY_MAJOR_VERSION < 3
-  0, /*bf_getsegcount*/
-  #endif
-  #if PY_MAJOR_VERSION < 3
-  0, /*bf_getcharbuffer*/
-  #endif
-  #if PY_VERSION_HEX >= 0x02060000
-  0, /*bf_getbuffer*/
-  #endif
-  #if PY_VERSION_HEX >= 0x02060000
-  0, /*bf_releasebuffer*/
-  #endif
-};
-
-static PyTypeObject __pyx_type_8Corellia_6client_Client = {
-  PyVarObject_HEAD_INIT(0, 0)
-  __Pyx_NAMESTR("Corellia.client.Client"), /*tp_name*/
-  sizeof(struct __pyx_obj_8Corellia_6client_Client), /*tp_basicsize*/
-  0, /*tp_itemsize*/
-  __pyx_tp_dealloc_8Corellia_6client_Client, /*tp_dealloc*/
-  0, /*tp_print*/
-  0, /*tp_getattr*/
-  0, /*tp_setattr*/
-  #if PY_MAJOR_VERSION < 3
-  0, /*tp_compare*/
-  #else
-  0, /*reserved*/
-  #endif
-  0, /*tp_repr*/
-  &__pyx_tp_as_number_Client, /*tp_as_number*/
-  &__pyx_tp_as_sequence_Client, /*tp_as_sequence*/
-  &__pyx_tp_as_mapping_Client, /*tp_as_mapping*/
-  0, /*tp_hash*/
-  0, /*tp_call*/
-  0, /*tp_str*/
-  __pyx_tp_getattro_8Corellia_6client_Client, /*tp_getattro*/
-  0, /*tp_setattro*/
-  &__pyx_tp_as_buffer_Client, /*tp_as_buffer*/
-  Py_TPFLAGS_DEFAULT|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
-  0, /*tp_doc*/
-  __pyx_tp_traverse_8Corellia_6client_Client, /*tp_traverse*/
-  __pyx_tp_clear_8Corellia_6client_Client, /*tp_clear*/
-  0, /*tp_richcompare*/
-  0, /*tp_weaklistoffset*/
-  0, /*tp_iter*/
-  0, /*tp_iternext*/
-  __pyx_methods_8Corellia_6client_Client, /*tp_methods*/
-  0, /*tp_members*/
-  0, /*tp_getset*/
-  0, /*tp_base*/
-  0, /*tp_dict*/
-  0, /*tp_descr_get*/
-  0, /*tp_descr_set*/
-  0, /*tp_dictoffset*/
-  0, /*tp_init*/
-  0, /*tp_alloc*/
-  __pyx_tp_new_8Corellia_6client_Client, /*tp_new*/
-  0, /*tp_free*/
-  0, /*tp_is_gc*/
-  0, /*tp_bases*/
-  0, /*tp_mro*/
-  0, /*tp_cache*/
-  0, /*tp_subclasses*/
-  0, /*tp_weaklist*/
-  0, /*tp_del*/
-  #if PY_VERSION_HEX >= 0x02060000
-  0, /*tp_version_tag*/
-  #endif
-};
-
-static PyObject *__pyx_tp_new_8Corellia_6client___pyx_scope_struct____getattr__(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
-  struct __pyx_obj_8Corellia_6client___pyx_scope_struct____getattr__ *p;
-  PyObject *o = (*t->tp_alloc)(t, 0);
-  if (!o) return 0;
-  p = ((struct __pyx_obj_8Corellia_6client___pyx_scope_struct____getattr__ *)o);
-  p->__pyx_v_self = 0;
-  return o;
-}
-
-static void __pyx_tp_dealloc_8Corellia_6client___pyx_scope_struct____getattr__(PyObject *o) {
-  struct __pyx_obj_8Corellia_6client___pyx_scope_struct____getattr__ *p = (struct __pyx_obj_8Corellia_6client___pyx_scope_struct____getattr__ *)o;
-  PyObject_GC_UnTrack(o);
-  Py_CLEAR(p->__pyx_v_self);
-  PyObject_GC_Track(o);
-  (*Py_TYPE(o)->tp_free)(o);
-}
-
-static int __pyx_tp_traverse_8Corellia_6client___pyx_scope_struct____getattr__(PyObject *o, visitproc v, void *a) {
-  int e;
-  struct __pyx_obj_8Corellia_6client___pyx_scope_struct____getattr__ *p = (struct __pyx_obj_8Corellia_6client___pyx_scope_struct____getattr__ *)o;
-  if (p->__pyx_v_self) {
-    e = (*v)(((PyObject*)p->__pyx_v_self), a); if (e) return e;
-  }
-  return 0;
-}
-
-static int __pyx_tp_clear_8Corellia_6client___pyx_scope_struct____getattr__(PyObject *o) {
-  struct __pyx_obj_8Corellia_6client___pyx_scope_struct____getattr__ *p = (struct __pyx_obj_8Corellia_6client___pyx_scope_struct____getattr__ *)o;
-  PyObject* tmp;
-  tmp = ((PyObject*)p->__pyx_v_self);
-  p->__pyx_v_self = ((struct __pyx_obj_8Corellia_6client_Client *)Py_None); Py_INCREF(Py_None);
-  Py_XDECREF(tmp);
-  return 0;
-}
-
-static PyMethodDef __pyx_methods_8Corellia_6client___pyx_scope_struct____getattr__[] = {
-  {0, 0, 0, 0}
-};
-
-static PyNumberMethods __pyx_tp_as_number___pyx_scope_struct____getattr__ = {
-  0, /*nb_add*/
-  0, /*nb_subtract*/
-  0, /*nb_multiply*/
-  #if PY_MAJOR_VERSION < 3
-  0, /*nb_divide*/
-  #endif
-  0, /*nb_remainder*/
-  0, /*nb_divmod*/
-  0, /*nb_power*/
-  0, /*nb_negative*/
-  0, /*nb_positive*/
-  0, /*nb_absolute*/
-  0, /*nb_nonzero*/
-  0, /*nb_invert*/
-  0, /*nb_lshift*/
-  0, /*nb_rshift*/
-  0, /*nb_and*/
-  0, /*nb_xor*/
-  0, /*nb_or*/
-  #if PY_MAJOR_VERSION < 3
-  0, /*nb_coerce*/
-  #endif
-  0, /*nb_int*/
-  #if PY_MAJOR_VERSION < 3
-  0, /*nb_long*/
-  #else
-  0, /*reserved*/
-  #endif
-  0, /*nb_float*/
-  #if PY_MAJOR_VERSION < 3
-  0, /*nb_oct*/
-  #endif
-  #if PY_MAJOR_VERSION < 3
-  0, /*nb_hex*/
-  #endif
-  0, /*nb_inplace_add*/
-  0, /*nb_inplace_subtract*/
-  0, /*nb_inplace_multiply*/
-  #if PY_MAJOR_VERSION < 3
-  0, /*nb_inplace_divide*/
-  #endif
-  0, /*nb_inplace_remainder*/
-  0, /*nb_inplace_power*/
-  0, /*nb_inplace_lshift*/
-  0, /*nb_inplace_rshift*/
-  0, /*nb_inplace_and*/
-  0, /*nb_inplace_xor*/
-  0, /*nb_inplace_or*/
-  0, /*nb_floor_divide*/
-  0, /*nb_true_divide*/
-  0, /*nb_inplace_floor_divide*/
-  0, /*nb_inplace_true_divide*/
-  #if PY_VERSION_HEX >= 0x02050000
-  0, /*nb_index*/
-  #endif
-};
-
-static PySequenceMethods __pyx_tp_as_sequence___pyx_scope_struct____getattr__ = {
-  0, /*sq_length*/
-  0, /*sq_concat*/
-  0, /*sq_repeat*/
-  0, /*sq_item*/
-  0, /*sq_slice*/
-  0, /*sq_ass_item*/
-  0, /*sq_ass_slice*/
-  0, /*sq_contains*/
-  0, /*sq_inplace_concat*/
-  0, /*sq_inplace_repeat*/
-};
-
-static PyMappingMethods __pyx_tp_as_mapping___pyx_scope_struct____getattr__ = {
-  0, /*mp_length*/
-  0, /*mp_subscript*/
-  0, /*mp_ass_subscript*/
-};
-
-static PyBufferProcs __pyx_tp_as_buffer___pyx_scope_struct____getattr__ = {
-  #if PY_MAJOR_VERSION < 3
-  0, /*bf_getreadbuffer*/
-  #endif
-  #if PY_MAJOR_VERSION < 3
-  0, /*bf_getwritebuffer*/
-  #endif
-  #if PY_MAJOR_VERSION < 3
-  0, /*bf_getsegcount*/
-  #endif
-  #if PY_MAJOR_VERSION < 3
-  0, /*bf_getcharbuffer*/
-  #endif
-  #if PY_VERSION_HEX >= 0x02060000
-  0, /*bf_getbuffer*/
-  #endif
-  #if PY_VERSION_HEX >= 0x02060000
-  0, /*bf_releasebuffer*/
-  #endif
-};
-
-static PyTypeObject __pyx_type_8Corellia_6client___pyx_scope_struct____getattr__ = {
-  PyVarObject_HEAD_INIT(0, 0)
-  __Pyx_NAMESTR("Corellia.client.__pyx_scope_struct____getattr__"), /*tp_name*/
-  sizeof(struct __pyx_obj_8Corellia_6client___pyx_scope_struct____getattr__), /*tp_basicsize*/
-  0, /*tp_itemsize*/
-  __pyx_tp_dealloc_8Corellia_6client___pyx_scope_struct____getattr__, /*tp_dealloc*/
-  0, /*tp_print*/
-  0, /*tp_getattr*/
-  0, /*tp_setattr*/
-  #if PY_MAJOR_VERSION < 3
-  0, /*tp_compare*/
-  #else
-  0, /*reserved*/
-  #endif
-  0, /*tp_repr*/
-  &__pyx_tp_as_number___pyx_scope_struct____getattr__, /*tp_as_number*/
-  &__pyx_tp_as_sequence___pyx_scope_struct____getattr__, /*tp_as_sequence*/
-  &__pyx_tp_as_mapping___pyx_scope_struct____getattr__, /*tp_as_mapping*/
-  0, /*tp_hash*/
-  0, /*tp_call*/
-  0, /*tp_str*/
-  0, /*tp_getattro*/
-  0, /*tp_setattro*/
-  &__pyx_tp_as_buffer___pyx_scope_struct____getattr__, /*tp_as_buffer*/
-  Py_TPFLAGS_DEFAULT|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
-  0, /*tp_doc*/
-  __pyx_tp_traverse_8Corellia_6client___pyx_scope_struct____getattr__, /*tp_traverse*/
-  __pyx_tp_clear_8Corellia_6client___pyx_scope_struct____getattr__, /*tp_clear*/
-  0, /*tp_richcompare*/
-  0, /*tp_weaklistoffset*/
-  0, /*tp_iter*/
-  0, /*tp_iternext*/
-  __pyx_methods_8Corellia_6client___pyx_scope_struct____getattr__, /*tp_methods*/
-  0, /*tp_members*/
-  0, /*tp_getset*/
-  0, /*tp_base*/
-  0, /*tp_dict*/
-  0, /*tp_descr_get*/
-  0, /*tp_descr_set*/
-  0, /*tp_dictoffset*/
-  0, /*tp_init*/
-  0, /*tp_alloc*/
-  __pyx_tp_new_8Corellia_6client___pyx_scope_struct____getattr__, /*tp_new*/
-  0, /*tp_free*/
-  0, /*tp_is_gc*/
-  0, /*tp_bases*/
-  0, /*tp_mro*/
-  0, /*tp_cache*/
-  0, /*tp_subclasses*/
-  0, /*tp_weaklist*/
-  0, /*tp_del*/
-  #if PY_VERSION_HEX >= 0x02060000
-  0, /*tp_version_tag*/
-  #endif
-};
 
 static PyMethodDef __pyx_methods[] = {
   {0, 0, 0, 0}
@@ -1868,7 +1216,7 @@ static PyMethodDef __pyx_methods[] = {
 #if PY_MAJOR_VERSION >= 3
 static struct PyModuleDef __pyx_moduledef = {
     PyModuleDef_HEAD_INIT,
-    __Pyx_NAMESTR("client"),
+    __Pyx_NAMESTR("kvstore"),
     0, /* m_doc */
     -1, /* m_size */
     __pyx_methods /* m_methods */,
@@ -1880,36 +1228,124 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
-  {&__pyx_n_s_2, __pyx_k_2, sizeof(__pyx_k_2), 0, 0, 1, 1},
-  {&__pyx_n_s_3, __pyx_k_3, sizeof(__pyx_k_3), 0, 0, 1, 1},
-  {&__pyx_n_s__GET_RESULT, __pyx_k__GET_RESULT, sizeof(__pyx_k__GET_RESULT), 0, 0, 1, 1},
-  {&__pyx_n_s__PUT_TASK, __pyx_k__PUT_TASK, sizeof(__pyx_k__PUT_TASK), 0, 0, 1, 1},
-  {&__pyx_n_s__TaskQueue, __pyx_k__TaskQueue, sizeof(__pyx_k__TaskQueue), 0, 0, 1, 1},
+  {&__pyx_kp_s_1, __pyx_k_1, sizeof(__pyx_k_1), 0, 0, 1, 0},
+  {&__pyx_kp_s_4, __pyx_k_4, sizeof(__pyx_k_4), 0, 0, 1, 0},
+  {&__pyx_n_s_5, __pyx_k_5, sizeof(__pyx_k_5), 0, 0, 1, 1},
+  {&__pyx_n_s__FastRedis, __pyx_k__FastRedis, sizeof(__pyx_k__FastRedis), 0, 0, 1, 1},
+  {&__pyx_n_s__KVStore, __pyx_k__KVStore, sizeof(__pyx_k__KVStore), 0, 0, 1, 1},
+  {&__pyx_n_s____init__, __pyx_k____init__, sizeof(__pyx_k____init__), 0, 0, 1, 1},
   {&__pyx_n_s____main__, __pyx_k____main__, sizeof(__pyx_k____main__), 0, 0, 1, 1},
   {&__pyx_n_s____test__, __pyx_k____test__, sizeof(__pyx_k____test__), 0, 0, 1, 1},
   {&__pyx_n_s__addr, __pyx_k__addr, sizeof(__pyx_k__addr), 0, 0, 1, 1},
-  {&__pyx_n_s__args, __pyx_k__args, sizeof(__pyx_k__args), 0, 0, 1, 1},
-  {&__pyx_n_s__block, __pyx_k__block, sizeof(__pyx_k__block), 0, 0, 1, 1},
-  {&__pyx_n_s__finish, __pyx_k__finish, sizeof(__pyx_k__finish), 0, 0, 1, 1},
-  {&__pyx_n_s__flush, __pyx_k__flush, sizeof(__pyx_k__flush), 0, 0, 1, 1},
-  {&__pyx_n_s__get_result, __pyx_k__get_result, sizeof(__pyx_k__get_result), 0, 0, 1, 1},
+  {&__pyx_n_s__cmd, __pyx_k__cmd, sizeof(__pyx_k__cmd), 0, 0, 1, 1},
+  {&__pyx_n_s__fastredis, __pyx_k__fastredis, sizeof(__pyx_k__fastredis), 0, 0, 1, 1},
+  {&__pyx_n_s__get, __pyx_k__get, sizeof(__pyx_k__get), 0, 0, 1, 1},
+  {&__pyx_n_s__hget, __pyx_k__hget, sizeof(__pyx_k__hget), 0, 0, 1, 1},
+  {&__pyx_n_s__hset, __pyx_k__hset, sizeof(__pyx_k__hset), 0, 0, 1, 1},
+  {&__pyx_n_s__kargs, __pyx_k__kargs, sizeof(__pyx_k__kargs), 0, 0, 1, 1},
   {&__pyx_n_s__key, __pyx_k__key, sizeof(__pyx_k__key), 0, 0, 1, 1},
-  {&__pyx_n_s__method, __pyx_k__method, sizeof(__pyx_k__method), 0, 0, 1, 1},
-  {&__pyx_n_s__path, __pyx_k__path, sizeof(__pyx_k__path), 0, 0, 1, 1},
-  {&__pyx_n_s__put_task, __pyx_k__put_task, sizeof(__pyx_k__put_task), 0, 0, 1, 1},
-  {&__pyx_n_s__taskqueue, __pyx_k__taskqueue, sizeof(__pyx_k__taskqueue), 0, 0, 1, 1},
-  {&__pyx_n_s__time, __pyx_k__time, sizeof(__pyx_k__time), 0, 0, 1, 1},
+  {&__pyx_n_s__name, __pyx_k__name, sizeof(__pyx_k__name), 0, 0, 1, 1},
+  {&__pyx_n_s__object, __pyx_k__object, sizeof(__pyx_k__object), 0, 0, 1, 1},
+  {&__pyx_n_s__raw_cmd, __pyx_k__raw_cmd, sizeof(__pyx_k__raw_cmd), 0, 0, 1, 1},
+  {&__pyx_n_s__redis, __pyx_k__redis, sizeof(__pyx_k__redis), 0, 0, 1, 1},
+  {&__pyx_n_s__reply, __pyx_k__reply, sizeof(__pyx_k__reply), 0, 0, 1, 1},
+  {&__pyx_n_s__res, __pyx_k__res, sizeof(__pyx_k__res), 0, 0, 1, 1},
+  {&__pyx_n_s__self, __pyx_k__self, sizeof(__pyx_k__self), 0, 0, 1, 1},
+  {&__pyx_n_s__serialize, __pyx_k__serialize, sizeof(__pyx_k__serialize), 0, 0, 1, 1},
+  {&__pyx_n_s__set, __pyx_k__set, sizeof(__pyx_k__set), 0, 0, 1, 1},
+  {&__pyx_n_s__value, __pyx_k__value, sizeof(__pyx_k__value), 0, 0, 1, 1},
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
+  __pyx_builtin_object = __Pyx_GetName(__pyx_b, __pyx_n_s__object); if (!__pyx_builtin_object) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   return 0;
+  __pyx_L1_error:;
+  return -1;
 }
 
 static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
+
+  /* "Corellia/kvstore.pyx":4
+ * 
+ * class KVStore(object):
+ *     def __init__(self, addr, name, **kargs):             # <<<<<<<<<<<<<<
+ *         self.redis = FastRedis(addr, **kargs)
+ *         self.name = "%s.KVS" % name
+ */
+  __pyx_k_tuple_2 = PyTuple_New(5); if (unlikely(!__pyx_k_tuple_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_k_tuple_2);
+  __Pyx_INCREF(((PyObject *)__pyx_n_s__self));
+  PyTuple_SET_ITEM(__pyx_k_tuple_2, 0, ((PyObject *)__pyx_n_s__self));
+  __Pyx_GIVEREF(((PyObject *)__pyx_n_s__self));
+  __Pyx_INCREF(((PyObject *)__pyx_n_s__addr));
+  PyTuple_SET_ITEM(__pyx_k_tuple_2, 1, ((PyObject *)__pyx_n_s__addr));
+  __Pyx_GIVEREF(((PyObject *)__pyx_n_s__addr));
+  __Pyx_INCREF(((PyObject *)__pyx_n_s__name));
+  PyTuple_SET_ITEM(__pyx_k_tuple_2, 2, ((PyObject *)__pyx_n_s__name));
+  __Pyx_GIVEREF(((PyObject *)__pyx_n_s__name));
+  __Pyx_INCREF(((PyObject *)__pyx_n_s__kargs));
+  PyTuple_SET_ITEM(__pyx_k_tuple_2, 3, ((PyObject *)__pyx_n_s__kargs));
+  __Pyx_GIVEREF(((PyObject *)__pyx_n_s__kargs));
+  __Pyx_INCREF(((PyObject *)__pyx_n_s__kargs));
+  PyTuple_SET_ITEM(__pyx_k_tuple_2, 4, ((PyObject *)__pyx_n_s__kargs));
+  __Pyx_GIVEREF(((PyObject *)__pyx_n_s__kargs));
+  __Pyx_GIVEREF(((PyObject *)__pyx_k_tuple_2));
+  __pyx_k_codeobj_3 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_k_tuple_2, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_4, __pyx_n_s____init__, 4, __pyx_empty_bytes); if (unlikely(!__pyx_k_codeobj_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+
+  /* "Corellia/kvstore.pyx":8
+ *         self.name = "%s.KVS" % name
+ * 
+ *     def set(self, key, value, serialize=True):             # <<<<<<<<<<<<<<
+ *         if serialize:
+ *             self.redis.cmd("hset", (self.name, key, value))
+ */
+  __pyx_k_tuple_6 = PyTuple_New(4); if (unlikely(!__pyx_k_tuple_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 8; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_k_tuple_6);
+  __Pyx_INCREF(((PyObject *)__pyx_n_s__self));
+  PyTuple_SET_ITEM(__pyx_k_tuple_6, 0, ((PyObject *)__pyx_n_s__self));
+  __Pyx_GIVEREF(((PyObject *)__pyx_n_s__self));
+  __Pyx_INCREF(((PyObject *)__pyx_n_s__key));
+  PyTuple_SET_ITEM(__pyx_k_tuple_6, 1, ((PyObject *)__pyx_n_s__key));
+  __Pyx_GIVEREF(((PyObject *)__pyx_n_s__key));
+  __Pyx_INCREF(((PyObject *)__pyx_n_s__value));
+  PyTuple_SET_ITEM(__pyx_k_tuple_6, 2, ((PyObject *)__pyx_n_s__value));
+  __Pyx_GIVEREF(((PyObject *)__pyx_n_s__value));
+  __Pyx_INCREF(((PyObject *)__pyx_n_s__serialize));
+  PyTuple_SET_ITEM(__pyx_k_tuple_6, 3, ((PyObject *)__pyx_n_s__serialize));
+  __Pyx_GIVEREF(((PyObject *)__pyx_n_s__serialize));
+  __Pyx_GIVEREF(((PyObject *)__pyx_k_tuple_6));
+  __pyx_k_codeobj_7 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_k_tuple_6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_4, __pyx_n_s__set, 8, __pyx_empty_bytes); if (unlikely(!__pyx_k_codeobj_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 8; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+
+  /* "Corellia/kvstore.pyx":14
+ *             self.redis.raw_cmd("hset", (self.name, key, value))
+ * 
+ *     def get(self, key, serialize=False):             # <<<<<<<<<<<<<<
+ *         if serialize:
+ *             res = self.redis.cmd("hget", (self.name, key)).reply()
+ */
+  __pyx_k_tuple_8 = PyTuple_New(4); if (unlikely(!__pyx_k_tuple_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_k_tuple_8);
+  __Pyx_INCREF(((PyObject *)__pyx_n_s__self));
+  PyTuple_SET_ITEM(__pyx_k_tuple_8, 0, ((PyObject *)__pyx_n_s__self));
+  __Pyx_GIVEREF(((PyObject *)__pyx_n_s__self));
+  __Pyx_INCREF(((PyObject *)__pyx_n_s__key));
+  PyTuple_SET_ITEM(__pyx_k_tuple_8, 1, ((PyObject *)__pyx_n_s__key));
+  __Pyx_GIVEREF(((PyObject *)__pyx_n_s__key));
+  __Pyx_INCREF(((PyObject *)__pyx_n_s__serialize));
+  PyTuple_SET_ITEM(__pyx_k_tuple_8, 2, ((PyObject *)__pyx_n_s__serialize));
+  __Pyx_GIVEREF(((PyObject *)__pyx_n_s__serialize));
+  __Pyx_INCREF(((PyObject *)__pyx_n_s__res));
+  PyTuple_SET_ITEM(__pyx_k_tuple_8, 3, ((PyObject *)__pyx_n_s__res));
+  __Pyx_GIVEREF(((PyObject *)__pyx_n_s__res));
+  __Pyx_GIVEREF(((PyObject *)__pyx_k_tuple_8));
+  __pyx_k_codeobj_9 = (PyObject*)__Pyx_PyCode_New(3, 0, 4, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_k_tuple_8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_4, __pyx_n_s__get, 14, __pyx_empty_bytes); if (unlikely(!__pyx_k_codeobj_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_RefNannyFinishContext();
   return 0;
+  __pyx_L1_error:;
+  __Pyx_RefNannyFinishContext();
+  return -1;
 }
 
 static int __Pyx_InitGlobals(void) {
@@ -1920,15 +1356,16 @@ static int __Pyx_InitGlobals(void) {
 }
 
 #if PY_MAJOR_VERSION < 3
-PyMODINIT_FUNC initclient(void); /*proto*/
-PyMODINIT_FUNC initclient(void)
+PyMODINIT_FUNC initkvstore(void); /*proto*/
+PyMODINIT_FUNC initkvstore(void)
 #else
-PyMODINIT_FUNC PyInit_client(void); /*proto*/
-PyMODINIT_FUNC PyInit_client(void)
+PyMODINIT_FUNC PyInit_kvstore(void); /*proto*/
+PyMODINIT_FUNC PyInit_kvstore(void)
 #endif
 {
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
   __Pyx_RefNannyDeclarations
   #if CYTHON_REFNANNY
   __Pyx_RefNanny = __Pyx_RefNannyImportAPI("refnanny");
@@ -1939,7 +1376,7 @@ PyMODINIT_FUNC PyInit_client(void)
           Py_FatalError("failed to import 'refnanny' module");
   }
   #endif
-  __Pyx_RefNannySetupContext("PyMODINIT_FUNC PyInit_client(void)", 0);
+  __Pyx_RefNannySetupContext("PyMODINIT_FUNC PyInit_kvstore(void)", 0);
   if ( __Pyx_check_binary_version() < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_empty_tuple = PyTuple_New(0); if (unlikely(!__pyx_empty_tuple)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_empty_bytes = PyBytes_FromStringAndSize("", 0); if (unlikely(!__pyx_empty_bytes)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -1961,7 +1398,7 @@ PyMODINIT_FUNC PyInit_client(void)
   #endif
   /*--- Module creation code ---*/
   #if PY_MAJOR_VERSION < 3
-  __pyx_m = Py_InitModule4(__Pyx_NAMESTR("client"), __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
+  __pyx_m = Py_InitModule4(__Pyx_NAMESTR("kvstore"), __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
   #else
   __pyx_m = PyModule_Create(&__pyx_moduledef);
   #endif
@@ -1969,8 +1406,8 @@ PyMODINIT_FUNC PyInit_client(void)
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    if (!PyDict_GetItemString(modules, "Corellia.client")) {
-      if (unlikely(PyDict_SetItemString(modules, "Corellia.client", __pyx_m) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!PyDict_GetItemString(modules, "Corellia.kvstore")) {
+      if (unlikely(PyDict_SetItemString(modules, "Corellia.kvstore", __pyx_m) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
@@ -1981,7 +1418,7 @@ PyMODINIT_FUNC PyInit_client(void)
   if (__Pyx_SetAttrString(__pyx_m, "__builtins__", __pyx_b) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   /*--- Initialize various global constants etc. ---*/
   if (unlikely(__Pyx_InitGlobals() < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (__pyx_module_is_main_Corellia__client) {
+  if (__pyx_module_is_main_Corellia__kvstore) {
     if (__Pyx_SetAttrString(__pyx_m, "__name__", __pyx_n_s____main__) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   }
   /*--- Builtin init code ---*/
@@ -1992,83 +1429,117 @@ PyMODINIT_FUNC PyInit_client(void)
   /*--- Variable export code ---*/
   /*--- Function export code ---*/
   /*--- Type init code ---*/
-  __pyx_vtabptr_8Corellia_6client_Client = &__pyx_vtable_8Corellia_6client_Client;
-  __pyx_vtable_8Corellia_6client_Client.put_task = (PyObject *(*)(struct __pyx_obj_8Corellia_6client_Client *, char *, PyObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_8Corellia_6client_6Client_put_task *__pyx_optional_args))__pyx_f_8Corellia_6client_6Client_put_task;
-  __pyx_vtable_8Corellia_6client_Client.get_result = (PyObject *(*)(struct __pyx_obj_8Corellia_6client_Client *, char *, int __pyx_skip_dispatch, struct __pyx_opt_args_8Corellia_6client_6Client_get_result *__pyx_optional_args))__pyx_f_8Corellia_6client_6Client_get_result;
-  __pyx_vtable_8Corellia_6client_Client.finish = (PyObject *(*)(struct __pyx_obj_8Corellia_6client_Client *, int __pyx_skip_dispatch))__pyx_f_8Corellia_6client_6Client_finish;
-  if (PyType_Ready(&__pyx_type_8Corellia_6client_Client) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (__Pyx_SetVtable(__pyx_type_8Corellia_6client_Client.tp_dict, __pyx_vtabptr_8Corellia_6client_Client) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (__Pyx_SetAttrString(__pyx_m, "Client", (PyObject *)&__pyx_type_8Corellia_6client_Client) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_ptype_8Corellia_6client_Client = &__pyx_type_8Corellia_6client_Client;
-  if (PyType_Ready(&__pyx_type_8Corellia_6client___pyx_scope_struct____getattr__) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 21; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_ptype_8Corellia_6client___pyx_scope_struct____getattr__ = &__pyx_type_8Corellia_6client___pyx_scope_struct____getattr__;
   /*--- Type import code ---*/
   /*--- Variable import code ---*/
   /*--- Function import code ---*/
   /*--- Execution code ---*/
 
-  /* "Corellia/client.pyx":1
- * from taskqueue import TaskQueue, ResultNotReadyOrExpired             # <<<<<<<<<<<<<<
- * import time
+  /* "Corellia/kvstore.pyx":1
+ * from fastredis import FastRedis             # <<<<<<<<<<<<<<
  * 
+ * class KVStore(object):
  */
-  __pyx_t_1 = PyList_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_INCREF(((PyObject *)__pyx_n_s__TaskQueue));
-  PyList_SET_ITEM(__pyx_t_1, 0, ((PyObject *)__pyx_n_s__TaskQueue));
-  __Pyx_GIVEREF(((PyObject *)__pyx_n_s__TaskQueue));
-  __Pyx_INCREF(((PyObject *)__pyx_n_s_3));
-  PyList_SET_ITEM(__pyx_t_1, 1, ((PyObject *)__pyx_n_s_3));
-  __Pyx_GIVEREF(((PyObject *)__pyx_n_s_3));
-  __pyx_t_2 = __Pyx_Import(((PyObject *)__pyx_n_s__taskqueue), ((PyObject *)__pyx_t_1), -1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_INCREF(((PyObject *)__pyx_n_s__FastRedis));
+  PyList_SET_ITEM(__pyx_t_1, 0, ((PyObject *)__pyx_n_s__FastRedis));
+  __Pyx_GIVEREF(((PyObject *)__pyx_n_s__FastRedis));
+  __pyx_t_2 = __Pyx_Import(((PyObject *)__pyx_n_s__fastredis), ((PyObject *)__pyx_t_1), -1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(((PyObject *)__pyx_t_1)); __pyx_t_1 = 0;
-  __pyx_t_1 = PyObject_GetAttr(__pyx_t_2, __pyx_n_s__TaskQueue);
+  __pyx_t_1 = PyObject_GetAttr(__pyx_t_2, __pyx_n_s__FastRedis);
   if (__pyx_t_1 == NULL) {
-    if (PyErr_ExceptionMatches(PyExc_AttributeError)) __Pyx_RaiseImportError(__pyx_n_s__TaskQueue);
+    if (PyErr_ExceptionMatches(PyExc_AttributeError)) __Pyx_RaiseImportError(__pyx_n_s__FastRedis);
     if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s__TaskQueue, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s__FastRedis, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyObject_GetAttr(__pyx_t_2, __pyx_n_s_3);
-  if (__pyx_t_1 == NULL) {
-    if (PyErr_ExceptionMatches(PyExc_AttributeError)) __Pyx_RaiseImportError(__pyx_n_s_3);
-    if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  }
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "Corellia/kvstore.pyx":3
+ * from fastredis import FastRedis
+ * 
+ * class KVStore(object):             # <<<<<<<<<<<<<<
+ *     def __init__(self, addr, name, **kargs):
+ *         self.redis = FastRedis(addr, **kargs)
+ */
+  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(((PyObject *)__pyx_t_2));
+
+  /* "Corellia/kvstore.pyx":4
+ * 
+ * class KVStore(object):
+ *     def __init__(self, addr, name, **kargs):             # <<<<<<<<<<<<<<
+ *         self.redis = FastRedis(addr, **kargs)
+ *         self.name = "%s.KVS" % name
+ */
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_8Corellia_7kvstore_7KVStore_1__init__, 0, NULL, __pyx_n_s_5, ((PyObject *)__pyx_k_codeobj_3)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_3, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s____init__, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "Corellia/client.pyx":2
- * from taskqueue import TaskQueue, ResultNotReadyOrExpired
- * import time             # <<<<<<<<<<<<<<
+  /* "Corellia/kvstore.pyx":8
+ *         self.name = "%s.KVS" % name
  * 
- * cdef class Client(object):
+ *     def set(self, key, value, serialize=True):             # <<<<<<<<<<<<<<
+ *         if serialize:
+ *             self.redis.cmd("hset", (self.name, key, value))
  */
-  __pyx_t_2 = __Pyx_Import(((PyObject *)__pyx_n_s__time), 0, -1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s__time, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_8Corellia_7kvstore_7KVStore_3set, 0, NULL, __pyx_n_s_5, ((PyObject *)__pyx_k_codeobj_7)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 8; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_1, sizeof(__pyx_defaults), 1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 8; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyBool_FromLong(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 8; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_CyFunction_Defaults(__pyx_defaults, __pyx_t_1)->__pyx_arg_serialize = __pyx_t_3;
+  __Pyx_GIVEREF(__pyx_t_3);
+  __pyx_t_3 = 0;
+  __Pyx_CyFunction_SetDefaultsGetter(__pyx_t_1, __pyx_pf_8Corellia_7kvstore_7KVStore_6__defaults__);
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s__set, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 8; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Corellia/client.pyx":15
- *         return self.tq.PUT_TASK(method, args, key)
+  /* "Corellia/kvstore.pyx":14
+ *             self.redis.raw_cmd("hset", (self.name, key, value))
  * 
- *     cpdef object get_result(self, char* key, block=True):             # <<<<<<<<<<<<<<
- *         return self.tq.GET_RESULT(key, block)
- * 
+ *     def get(self, key, serialize=False):             # <<<<<<<<<<<<<<
+ *         if serialize:
+ *             res = self.redis.cmd("hget", (self.name, key)).reply()
  */
-  __pyx_t_2 = __Pyx_PyBool_FromLong(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 15; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_k_1 = __pyx_t_2;
-  __Pyx_GIVEREF(__pyx_t_2);
-  __pyx_t_2 = 0;
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_8Corellia_7kvstore_7KVStore_5get, 0, NULL, __pyx_n_s_5, ((PyObject *)__pyx_k_codeobj_9)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_1, sizeof(__pyx_defaults1), 1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyBool_FromLong(0); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_CyFunction_Defaults(__pyx_defaults1, __pyx_t_1)->__pyx_arg_serialize = __pyx_t_3;
+  __Pyx_GIVEREF(__pyx_t_3);
+  __pyx_t_3 = 0;
+  __Pyx_CyFunction_SetDefaultsGetter(__pyx_t_1, __pyx_pf_8Corellia_7kvstore_7KVStore_8__defaults__);
+  if (PyObject_SetItem(__pyx_t_2, __pyx_n_s__get, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 14; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Corellia/client.pyx":1
- * from taskqueue import TaskQueue, ResultNotReadyOrExpired             # <<<<<<<<<<<<<<
- * import time
+  /* "Corellia/kvstore.pyx":3
+ * from fastredis import FastRedis
  * 
+ * class KVStore(object):             # <<<<<<<<<<<<<<
+ *     def __init__(self, addr, name, **kargs):
+ *         self.redis = FastRedis(addr, **kargs)
+ */
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_INCREF(__pyx_builtin_object);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_builtin_object);
+  __Pyx_GIVEREF(__pyx_builtin_object);
+  __pyx_t_3 = __Pyx_CreateClass(((PyObject *)__pyx_t_1), ((PyObject *)__pyx_t_2), __pyx_n_s__KVStore, __pyx_n_s_5); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(((PyObject *)__pyx_t_1)); __pyx_t_1 = 0;
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s__KVStore, __pyx_t_3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 3; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(((PyObject *)__pyx_t_2)); __pyx_t_2 = 0;
+
+  /* "Corellia/kvstore.pyx":1
+ * from fastredis import FastRedis             # <<<<<<<<<<<<<<
+ * 
+ * class KVStore(object):
  */
   __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(((PyObject *)__pyx_t_2));
@@ -2078,11 +1549,12 @@ PyMODINIT_FUNC PyInit_client(void)
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
   if (__pyx_m) {
-    __Pyx_AddTraceback("init Corellia.client", __pyx_clineno, __pyx_lineno, __pyx_filename);
+    __Pyx_AddTraceback("init Corellia.kvstore", __pyx_clineno, __pyx_lineno, __pyx_filename);
     Py_DECREF(__pyx_m); __pyx_m = 0;
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init Corellia.client");
+    PyErr_SetString(PyExc_ImportError, "init Corellia.kvstore");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
@@ -2109,6 +1581,21 @@ end:
     return (__Pyx_RefNannyAPIStruct *)r;
 }
 #endif /* CYTHON_REFNANNY */
+
+static PyObject *__Pyx_GetName(PyObject *dict, PyObject *name) {
+    PyObject *result;
+    result = PyObject_GetAttr(dict, name);
+    if (!result) {
+        if (dict != __pyx_b) {
+            PyErr_Clear();
+            result = PyObject_GetAttr(__pyx_b, name);
+        }
+        if (!result) {
+            PyErr_SetObject(PyExc_NameError, name);
+        }
+    }
+    return result;
+}
 
 static void __Pyx_RaiseArgtupleInvalid(
     const char* func_name,
@@ -2249,84 +1736,6 @@ bad:
     return -1;
 }
 
-static PyObject *__Pyx_GetName(PyObject *dict, PyObject *name) {
-    PyObject *result;
-    result = PyObject_GetAttr(dict, name);
-    if (!result) {
-        if (dict != __pyx_b) {
-            PyErr_Clear();
-            result = PyObject_GetAttr(__pyx_b, name);
-        }
-        if (!result) {
-            PyErr_SetObject(PyExc_NameError, name);
-        }
-    }
-    return result;
-}
-
-static int __Pyx_ArgTypeTest(PyObject *obj, PyTypeObject *type, int none_allowed,
-    const char *name, int exact)
-{
-    if (!type) {
-        PyErr_Format(PyExc_SystemError, "Missing type object");
-        return 0;
-    }
-    if (none_allowed && obj == Py_None) return 1;
-    else if (exact) {
-        if (Py_TYPE(obj) == type) return 1;
-    }
-    else {
-        if (PyObject_TypeCheck(obj, type)) return 1;
-    }
-    PyErr_Format(PyExc_TypeError,
-        "Argument '%s' has incorrect type (expected %s, got %s)",
-        name, type->tp_name, Py_TYPE(obj)->tp_name);
-    return 0;
-}
-
-static CYTHON_INLINE int __Pyx_CheckKeywordStrings(
-    PyObject *kwdict,
-    const char* function_name,
-    int kw_allowed)
-{
-    PyObject* key = 0;
-    Py_ssize_t pos = 0;
-#if CPYTHON_COMPILING_IN_PYPY
-    if (!kw_allowed && PyDict_Next(kwdict, &pos, &key, 0))
-        goto invalid_keyword;
-    return 1;
-#else
-    while (PyDict_Next(kwdict, &pos, &key, 0)) {
-        #if PY_MAJOR_VERSION < 3
-        if (unlikely(!PyString_CheckExact(key)) && unlikely(!PyString_Check(key)))
-        #endif
-            if (unlikely(!PyUnicode_Check(key)))
-                goto invalid_keyword_type;
-    }
-    if ((!kw_allowed) && unlikely(key))
-        goto invalid_keyword;
-    return 1;
-invalid_keyword_type:
-    PyErr_Format(PyExc_TypeError,
-        "%s() keywords must be strings", function_name);
-    return 0;
-#endif
-invalid_keyword:
-    PyErr_Format(PyExc_TypeError,
-    #if PY_MAJOR_VERSION < 3
-        "%s() got an unexpected keyword argument '%s'",
-        function_name, PyString_AsString(key));
-    #else
-        "%s() got an unexpected keyword argument '%U'",
-        function_name, key);
-    #endif
-    return 0;
-}
-
-static CYTHON_INLINE void __Pyx_RaiseClosureNameError(const char *varname) {
-    PyErr_Format(PyExc_NameError, "free variable '%s' referenced before assignment in enclosing scope", varname);
-}
-
 static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, long level) {
     PyObject *py_import = 0;
     PyObject *empty_list = 0;
@@ -2403,6 +1812,48 @@ static CYTHON_INLINE void __Pyx_RaiseImportError(PyObject *name) {
 #else
     PyErr_Format(PyExc_ImportError, "cannot import name %S", name);
 #endif
+}
+
+static PyObject *__Pyx_FindPy2Metaclass(PyObject *bases) {
+    PyObject *metaclass;
+#if PY_MAJOR_VERSION < 3
+    if (PyTuple_Check(bases) && PyTuple_GET_SIZE(bases) > 0) {
+        PyObject *base = PyTuple_GET_ITEM(bases, 0);
+        metaclass = PyObject_GetAttrString(base, (char *)"__class__");
+        if (!metaclass) {
+            PyErr_Clear();
+            metaclass = (PyObject*) Py_TYPE(base);
+        }
+    } else {
+        metaclass = (PyObject *) &PyClass_Type;
+    }
+#else
+    if (PyTuple_Check(bases) && PyTuple_GET_SIZE(bases) > 0) {
+        PyObject *base = PyTuple_GET_ITEM(bases, 0);
+        metaclass = (PyObject*) Py_TYPE(base);
+    } else {
+        metaclass = (PyObject *) &PyType_Type;
+    }
+#endif
+    Py_INCREF(metaclass);
+    return metaclass;
+}
+
+static PyObject *__Pyx_CreateClass(PyObject *bases, PyObject *dict, PyObject *name,
+                                   PyObject *modname) {
+    PyObject *result;
+    PyObject *metaclass;
+    if (PyDict_SetItemString(dict, "__module__", modname) < 0)
+        return NULL;
+    metaclass = PyDict_GetItemString(dict, "__metaclass__");
+    if (metaclass) {
+        Py_INCREF(metaclass);
+    } else {
+        metaclass = __Pyx_FindPy2Metaclass(bases);
+    }
+    result = PyObject_CallFunctionObjArgs(metaclass, name, bases, dict, NULL);
+    Py_DECREF(metaclass);
+    return result;
 }
 
 static PyObject *
@@ -3231,23 +2682,6 @@ static int __Pyx_check_binary_version(void) {
         #endif
     }
     return 0;
-}
-
-static int __Pyx_SetVtable(PyObject *dict, void *vtable) {
-#if PY_VERSION_HEX >= 0x02070000 && !(PY_MAJOR_VERSION==3&&PY_MINOR_VERSION==0)
-    PyObject *ob = PyCapsule_New(vtable, 0, 0);
-#else
-    PyObject *ob = PyCObject_FromVoidPtr(vtable, 0);
-#endif
-    if (!ob)
-        goto bad;
-    if (PyDict_SetItemString(dict, "__pyx_vtable__", ob) < 0)
-        goto bad;
-    Py_DECREF(ob);
-    return 0;
-bad:
-    Py_XDECREF(ob);
-    return -1;
 }
 
 static int __pyx_bisect_code_objects(__Pyx_CodeObjectCacheEntry* entries, int count, int code_line) {

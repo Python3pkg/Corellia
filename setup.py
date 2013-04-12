@@ -8,12 +8,13 @@ ext_modules=[
     Extension("Corellia.fastredis", ["Corellia/fastredis.c"]),
     Extension("Corellia.client", ["Corellia/client.c"]),
     Extension("Corellia.worker", ["Corellia/worker.c"]),
+    Extension("Corellia.kvstore", ["Corellia/kvstore.c"]),
 ]
 
 
 setup(
     name='Corellia',
-    version='0.4.1',
+    version='0.5.1',
     description='Fast Task Queue Using Redis',
     author='Zhu Zhaomeng',
     author_email='zhaomeng.zhu@gmail.com',
